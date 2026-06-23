@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>DS Buddy — Backend Graph</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  background: #080c14;
+  font-family: 'SF Mono', 'Fira Code', monospace;
+  min-height: 100vh;
+  overflow-x: auto;
+}
+header {
+  display: flex; align-items: center; gap: 20px;
+  padding: 16px 32px;
+  border-bottom: 1px solid #1a2030;
+}
+header h1 { font-size: 14px; font-weight: 700; color: #e2e8f0; letter-spacing: 0.3px; }
+header p  { font-size: 11px; color: #334155; margin-left: auto; }
+.legend {
+  display: flex; gap: 22px; flex-wrap: wrap;
+  padding: 10px 32px;
+  border-bottom: 1px solid #1a2030;
+}
+.l { display: flex; align-items: center; gap: 6px; font-size: 11px; color: #64748b; }
+.l span {
+  width: 22px; height: 10px; border-radius: 2px; flex-shrink: 0;
+}
+#wrap { overflow-x: auto; }
+svg { display: block; }
+.node { cursor: default; }
+.node rect { transition: filter .1s; }
+.node:hover rect { filter: brightness(1.6); }
+.edge { fill: none; }
+.layer-tag {
+  font-family: -apple-system, sans-serif;
+  font-size: 9px; font-weight: 700;
+  letter-spacing: 1.8px; text-transform: uppercase;
+}
+#tip {
+  position: fixed; bottom: 24px; left: 50%;
+  transform: translateX(-50%);
+  background: #1a2030; border: 1px solid #2d3a52;
+  border-radius: 6px; padding: 7px 16px;
+  font-size: 12px; color: #94a3b8;
+  pointer-events: none; opacity: 0;
+  transition: opacity .15s; white-space: nowrap;
+  max-width: 90vw; overflow: hidden; text-overflow: ellipsis;
+}
+#tip.on { opacity: 1; }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>DS Buddy — Backend Dependency Graph</h1>
+  <p>hover any node to highlight its connections</p>
+</header>
+
+<div class="legend">
+  <div class="l"><span style="background:#cbd5e1"></span>Entry</div>
+  <div class="l"><span style="background:#8b5cf6"></span>Routes</div>
+  <div class="l"><span style="background:#10b981"></span>Services</div>
+  <div class="l"><span style="background:#ec4899"></span>Models</div>
+  <div class="l"><span style="background:#f59e0b"></span>Core</div>
+  <div class="l"><span style="background:#475569"></span>External</div>
+</div>
+
+<div id="tip"></div>
+<div id="wrap"></div>
+
+<script>
+// ─── constants ───────────────────────────────────────────────────────────────
+const W = 1440, H = 720;
+const NW = 162, NH = 32, RX = 5;
+
+// group → { fill, stroke, textColor, edgeColor }
+const G = {
+  entry:   ['#141b2d','#cbd5e1','#f1f5f9','#94a3b8'],
+  route:   ['#1a1040','#8b5cf6','#c4b5fd','#8b5cf6'],
+  service: ['#051a10','#10b981','#6ee7b7','#10b981'],
+  model:   ['#2a0828','#ec4899','#f9a8d4','#ec4899'],
+  core:    ['#1a1000','#f59e0b','#fcd34d','#f59e0b'],
+  ext:     ['#111','#475569','#94a3b8','#475569'],
+};
+
+// ─── nodes ───────────────────────────────────────────────────────────────────
+// layer: 0=top (entry) … 4=bottom (external)
+const NODES = [
+  // 0 — entry
+  { id:'main',    lbl:'main.py',                g:'entry',   lay:0 },
+  // 1 — routes
+  { id:'r_ana',   lbl:'routes/analyze.py',       g:'route',   lay:1 },
+  { id:'r_chat',  lbl:'routes/chat.py',          g:'route',   lay:1 },
+  { id:'r_nb',    lbl:'routes/notebook.py',      g:'route',   lay:1 },
+  // 2 — services
+  { id:'s_file',  lbl:'file_loader.py',          g:'service', lay:2 },
+  { id:'s_scan',  lbl:'semantic_scanner.py',     g:'service', lay:2 },
+  { id:'s_prof',  lbl:'profiler.py',             g:'service', lay:2 },
+  { id:'s_graph', lbl:'graph_builder.py',        g:'service', lay:2 },
+  { id:'s_llm',   lbl:'llm_client.py',           g:'service', lay:2 },
+  { id:'s_chat',  lbl:'chat_client.py',          g:'service', lay:2 },
+  { id:'s_nb',    lbl:'notebook_generator.py',   g:'service', lay:2 },
+  // 3 — models + core
+  { id:'c_log',   lbl:'core/logging.py',         g:'core',    lay:3 },
+  { id:'c_err',   lbl:'core/errors.py',          g:'core',    lay:3 },
+  { id:'c_cfg',   lbl:'core/config.py',          g:'core',    lay:3 },
+  { id:'m_res',   lbl:'models/responses.py',     g:'model',   lay:3 },
+  { id:'m_req',   lbl:'models/requests.py',      g:'model',   lay:3 },
+  // 4 — external
+  { id:'e_polars',lbl:'Polars',                  g:'ext',     lay:4 },
+  { id:'e_sk',    lbl:'scikit-learn',            g:'ext',     lay:4 },
+  { id:'e_haiku', lbl:'Anthropic  Haiku',        g:'ext',     lay:4 },
+  { id:'e_sonnet',lbl:'Anthropic  Sonnet',       g:'ext',     lay:4 },
+  { id:'e_redis', lbl:'Redis',                   g:'ext',     lay:4 },
+];
+
+// ─── edges  [from, to, label] ─────────────────────────────────────────────────
+const EDGES = [
+  // main
+  ['main','r_ana',   'include_router'],
+  ['main','r_chat',  'include_router'],
+  ['main','r_nb',    'include_router'],
+  ['main','c_cfg',   'settings'],
+  ['main','c_err',   'register handlers'],
+  ['main','c_log',   'configure_logging'],
+  // analyze route
+  ['r_ana','s_file',  'load_dataframe()'],
+  ['r_ana','s_scan',  'scan()'],
+  ['r_ana','s_prof',  'profile()'],
+  ['r_ana','s_graph', 'build_graph()'],
+  ['r_ana','s_llm',   'reason()'],
+  ['r_ana','m_req',   'ProblemType'],
+  ['r_ana','m_res',   'AnalyzeResponse'],
+  // chat route
+  ['r_chat','s_chat', 'chat()'],
+  ['r_chat','m_req',  'ChatRequest'],
+  ['r_chat','m_res',  'ChatResponse'],
+  // notebook route
+  ['r_nb','s_nb',     'generate()'],
+  ['r_nb','m_req',    'NotebookRequest'],
+  ['r_nb','m_res',    'NotebookResponse'],
+  // services → config
+  ['s_file', 'c_cfg', 'max_file_size_mb'],
+  ['s_scan', 'c_cfg', 'llm_class'],
+  ['s_prof', 'c_cfg', 'sample_rows'],
+  ['s_llm',  'c_cfg', 'llm_class / llm_reason'],
+  ['s_chat', 'c_cfg', 'llm_class, redis_url'],
+  ['s_nb',   'c_cfg', 'llm_reason'],
+  // services → models
+  ['s_prof', 'm_res', 'DataProfile'],
+  ['s_prof', 'm_req', 'ProblemType'],
+  ['s_graph','m_res', 'FeatureGraph'],
+  ['s_llm',  'm_res', 'AgenticInsights'],
+  ['s_llm',  'm_req', 'ProblemType'],
+  // services → external
+  ['s_file', 'e_polars','read_csv / xlsx / parquet'],
+  ['s_scan', 'e_haiku', 'messages.create()  max_tokens=200'],
+  ['s_prof', 'e_polars','DataFrame + pl.corr'],
+  ['s_prof', 'e_sk',    'mutual_info_classif / regression'],
+  ['s_graph','e_polars','pl.corr() Union-Find'],
+  ['s_llm',  'e_haiku', 'small dataset  ≤50k rows'],
+  ['s_llm',  'e_sonnet','large dataset  >50k rows'],
+  ['s_chat', 'e_haiku', 'messages.create()  max_tokens=300'],
+  ['s_chat', 'e_redis', 'incr session counter  TTL=1h'],
+  ['s_nb',   'e_sonnet','messages.create()  max_tokens=1500'],
+  // errors imports anthropic SDK for RateLimitError type
+  ['c_err',  'e_haiku', 'RateLimitError type import'],
+];
+
+// ─── layout ───────────────────────────────────────────────────────────────────
+// y center per layer
+const LY = { 0:80, 1:215, 2:368, 3:522, 4:660 };
+const LAYER_LABEL = {
+  0:'ENTRY POINT',
+  1:'API ROUTES',
+  2:'SERVICES',
+  3:'MODELS  &  CORE',
+  4:'EXTERNAL DEPENDENCIES',
+};
+
+// evenly space n nodes of width NW across canvas W
+function xPositions(n) {
+  const gap = (W - n * NW) / (n + 1);
+  return Array.from({ length: n }, (_, i) => gap + i * (NW + gap));
+}
+
+// group nodes by layer and assign positions
+const nodeMap = {};
+const byLayer = {};
+NODES.forEach(n => {
+  if (!byLayer[n.lay]) byLayer[n.lay] = [];
+  byLayer[n.lay].push(n.id);
+  nodeMap[n.id] = { ...n };
+});
+Object.entries(byLayer).forEach(([lay, ids]) => {
+  const xs = xPositions(ids.length);
+  ids.forEach((id, i) => {
+    nodeMap[id].x  = xs[i];
+    nodeMap[id].y  = LY[lay] - NH / 2;
+    nodeMap[id].cx = xs[i] + NW / 2;
+    nodeMap[id].cy = LY[lay];
+  });
+});
+
+// adjacency for hover
+const adj = {};
+NODES.forEach(n => { adj[n.id] = []; });
+EDGES.forEach(([a, b, lbl]) => {
+  adj[a].push({ id: b, lbl });
+  adj[b].push({ id: a, lbl });
+});
+
+// ─── render ───────────────────────────────────────────────────────────────────
+const NS = 'http://www.w3.org/2000/svg';
+function el(tag, attrs, parent) {
+  const e = document.createElementNS(NS, tag);
+  for (const [k, v] of Object.entries(attrs)) e.setAttribute(k, v);
+  if (parent) parent.appendChild(e);
+  return e;
+}
+
+const svg = el('svg', { width: W, height: H, viewBox: `0 0 ${W} ${H}` });
+document.getElementById('wrap').appendChild(svg);
+
+// arrowhead markers — one per group colour
+const defs = el('defs', {}, svg);
+Object.entries(G).forEach(([gid, vals]) => {
+  const col = vals[3];
+  const m = el('marker', {
+    id: `arr-${gid}`, markerWidth: 7, markerHeight: 7,
+    refX: 6, refY: 3.5, orient: 'auto',
+  }, defs);
+  el('path', { d: 'M0,0 L7,3.5 L0,7 Z', fill: col }, m);
+});
+
+// layer separators + labels
+Object.entries(LY).forEach(([lay, cy]) => {
+  const lineY = cy - NH / 2 - 4;
+  el('line', { x1:0, y1:lineY, x2:W, y2:lineY, stroke:'#1a2030', 'stroke-width':1 }, svg);
+  el('text', {
+    x: 10, y: lineY - 6,
+    class: 'layer-tag', fill: '#2a374f',
+    'font-family': '-apple-system, sans-serif',
+    'font-size': 9, 'font-weight': 700, 'letter-spacing': 2,
+  }, svg).textContent = LAYER_LABEL[lay];
+});
+
+// edges group (behind nodes)
+const edgeGroup = el('g', {}, svg);
+const edgeEls = [];
+
+EDGES.forEach(([fromId, toId, lbl]) => {
+  const f = nodeMap[fromId], t = nodeMap[toId];
+  const col = G[f.g][3];
+  const sx = f.cx, sy = f.y + NH;
+  const tx = t.cx, ty = t.y;
+  const my = (sy + ty) / 2;
+  const d = `M${sx},${sy} C${sx},${my} ${tx},${my} ${tx},${ty}`;
+  const p = el('path', {
+    d, class: 'edge',
+    stroke: col, 'stroke-width': 1, opacity: 0.2,
+    'marker-end': `url(#arr-${f.g})`,
+    'data-f': fromId, 'data-t': toId, 'data-lbl': lbl,
+  }, edgeGroup);
+  edgeEls.push(p);
+});
+
+// nodes group (on top)
+const nodeGroup = el('g', {}, svg);
+
+NODES.forEach(n => {
+  const nd = nodeMap[n.id];
+  const [fill, stroke, textCol] = G[n.g];
+  const g = el('g', { class: 'node', 'data-id': n.id }, nodeGroup);
+
+  el('rect', {
+    x: nd.x, y: nd.y, width: NW, height: NH,
+    rx: RX, ry: RX,
+    fill, stroke, 'stroke-width': 1.5,
+  }, g);
+
+  const txt = el('text', {
+    x: nd.cx, y: nd.cy + 4.5,
+    'text-anchor': 'middle',
+    fill: textCol, 'font-size': 11,
+    'font-family': "'SF Mono','Fira Code',monospace",
+  }, g);
+  txt.textContent = n.lbl;
+
+  g.addEventListener('mouseenter', () => highlight(n.id));
+  g.addEventListener('mouseleave', reset);
+});
+
+// ─── interactions ─────────────────────────────────────────────────────────────
+const tip = document.getElementById('tip');
+
+function highlight(id) {
+  const peers = new Set(adj[id].map(e => e.id));
+  peers.add(id);
+
+  edgeEls.forEach(p => {
+    const connected = p.getAttribute('data-f') === id || p.getAttribute('data-t') === id;
+    p.setAttribute('opacity', connected ? 0.9 : 0.03);
+    p.setAttribute('stroke-width', connected ? 2 : 1);
+  });
+
+  nodeGroup.querySelectorAll('[data-id]').forEach(g => {
+    g.style.opacity = peers.has(g.getAttribute('data-id')) ? '1' : '0.1';
+  });
+
+  // show edge labels for this node
+  const labels = adj[id].map(e => `${nodeMap[e.id].lbl}  (${e.lbl})`).join(' | ');
+  tip.textContent = `${nodeMap[id].lbl}  →  ${labels || '—'}`;
+  tip.classList.add('on');
+}
+
+function reset() {
+  edgeEls.forEach(p => {
+    p.setAttribute('opacity', 0.2);
+    p.setAttribute('stroke-width', 1);
+  });
+  nodeGroup.querySelectorAll('[data-id]').forEach(g => {
+    g.style.opacity = '1';
+  });
+  tip.classList.remove('on');
+}
+</script>
+</body>
+</html>

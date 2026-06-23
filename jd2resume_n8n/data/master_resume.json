@@ -1,0 +1,74 @@
+{
+  "name": "Sridhar Malladi",
+  "contact": {
+    "email": "sridhar.malladi05@gmail.com",
+    "phone": "945-899-3247",
+    "location": "San Antonio, TX (Relocatable)",
+    "linkedin": "LinkedIn",
+    "github": "GitHub"
+  },
+  "summary": "Data Scientist with 3+ years building ML models (XGBoost, regression), running experiments, and turning data into dashboards for non-technical stakeholders across product, pricing, and growth.",
+  "tech_stack": [
+    "Python", "SQL", "Pandas", "scikit-learn", "XGBoost", "PyTorch",
+    "AWS", "Databricks", "Airflow", "Tableau", "A/B testing",
+    "MLflow", "Power BI", "LLMs", "RAG"
+  ],
+  "experience": [
+    {
+      "company": "Prolific Technologies",
+      "title": "Data Scientist",
+      "location": "Remote, USA",
+      "start": "February 2025",
+      "end": "June 2026",
+      "bullets": [
+        "Designed and analyzed 40+ A/B tests across pricing, onboarding, and feature flows with statistical significance and power analysis, shipping 6 wins that lifted conversion by 18%.",
+        "Built and deployed customer behavior and retention models on AWS + Databricks using XGBoost and logistic regression, lifting prediction accuracy by 31% across 3 customer segments.",
+        "Automated recurring analytics and reporting by integrating fine-tuned LLMs and RAG into internal tools, cutting 5+ hours/week of manual pulls and stakeholder turnaround from 2 days to 1 hour.",
+        "Built a model evaluation and monitoring framework across 3 production models using MLflow and statistical drift detection, cutting issue detection from 4 hours to 12 minutes at 99.6% uptime.",
+        "Delivered executive Tableau dashboards integrating product, revenue, and customer data, replacing weekly static reports with real-time KPI visibility across 4 business units."
+      ]
+    },
+    {
+      "company": "UTSA",
+      "title": "Graduate Teaching Assistant",
+      "location": "San Antonio, TX",
+      "start": "August 2022",
+      "end": "December 2023",
+      "bullets": [
+        "Mentored 100+ graduate students across Statistics, Probability, and Applied Analytics over 4 semesters, running weekly office hours on Python, regression, and model evaluation, building the statistical foundation behind ML."
+      ]
+    },
+    {
+      "company": "MYG Pvt Ltd",
+      "title": "Data Engineer",
+      "location": "Mumbai, India",
+      "start": "February 2021",
+      "end": "March 2022",
+      "bullets": [
+        "Built and automated ETL pipelines in Python, SQL, and Airflow on AWS, cutting data prep time by 60% and enabling reliable ingestion for downstream modeling and reporting.",
+        "Trained ML models (logistic regression, random forest, gradient boosting) on customer data, lifting prediction accuracy by 23% across churn, segmentation, and demand forecasting.",
+        "Built Power BI dashboards and automated reporting adopted by 3 cross-functional teams, replacing 10 hours/week of manual work with self-serve insights for business stakeholders."
+      ]
+    }
+  ],
+  "projects": [
+    {
+      "name": "DSBuddy",
+      "description": "AI assistant that auto-profiles datasets, builds feature graphs, and generates Jupyter notebooks using cost-optimized Claude Haiku/Sonnet routing.",
+      "link": "Live Demo"
+    },
+    {
+      "name": "RAGLens",
+      "description": "Live benchmarking tool comparing 4 RAG configurations: baseline through fine-tuned + hybrid retrieval with real-time RAGAS scoring to quantify what each component adds.",
+      "link": "Live Demo"
+    }
+  ],
+  "education": [
+    {
+      "school": "New England College",
+      "degree": "Master of Science in Data Science and Analytics",
+      "date": "December 2024",
+      "gpa": "3.8"
+    }
+  ]
+}

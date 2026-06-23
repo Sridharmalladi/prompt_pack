@@ -1,0 +1,14 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(curl -s http://localhost:3000/upload)",
+      "Bash(npm run *)",
+      "Bash(echo \"frontend-pid=$!\")",
+      "Bash(.venv/bin/uvicorn app.main:app --host 0.0.0.0 --port 8000)",
+      "Bash(echo \"backend-pid=$!\")",
+      "Bash(curl -s --max-time 5 http://localhost:3000/upload)",
+      "Bash(curl -s --max-time 5 http://localhost:8000/health)",
+      "Bash(open http://localhost:3000/upload)"
+    ]
+  }
+}

@@ -1,0 +1,35 @@
+version: "3.8"
+
+services:
+  n8n:
+    image: n8nio/n8n
+    restart: unless-stopped
+    ports:
+      - "5678:5678"
+    environment:
+      - N8N_HOST=localhost
+      - N8N_PORT=5678
+      - N8N_PROTOCOL=http
+      - WEBHOOK_URL=http://localhost:5678/
+      - ANTHROPIC_API_KEY=${ANTHROPIC_API_KEY}
+      - NODE_FUNCTION_ALLOW_EXTERNAL=pdf-lib
+    volumes:
+      - n8n_data:/home/node/.n8n
+      - .:/app
+    networks:
+      - resume_net
+    depends_on:
+      - gotenberg
+
+  gotenberg:
+    image: gotenberg/gotenberg:7
+    restart: unless-stopped
+    networks:
+      - resume_net
+
+networks:
+  resume_net:
+    driver: bridge
+
+volumes:
+  n8n_data:

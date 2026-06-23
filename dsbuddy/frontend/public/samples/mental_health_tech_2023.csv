@@ -1,0 +1,521 @@
+age,gender,country,role,company_size,remote_work,family_history,employer_benefits,care_options,wellness_program,anonymity_protected,leave_ease,work_interfere,treatment
+38,Male,UK,Manager,26-100,Always,0,No,Not sure,Yes,Yes,Don't know,Never,No
+49,Non-binary,USA,Product Manager,1000+,Never,0,No,Yes,Yes,No,Very difficult,Sometimes,Yes
+50,Male,UK,Software Engineer,1000+,Never,1,Yes,Yes,No,Don't know,Very difficult,Rarely,No
+29,Female,India,DevOps,1-25,Sometimes,0,Yes,Yes,No,No,Somewhat difficult,Never,No
+56,Non-binary,Australia,Designer,500-1000,Sometimes,1,Yes,Not sure,No,Don't know,Very difficult,Sometimes,Yes
+30,Male,India,Researcher,1000+,Always,1,Don't know,Not sure,Don't know,Yes,Somewhat difficult,Rarely,Yes
+43,Female,USA,DevOps,1000+,Always,0,Yes,Yes,No,No,Very difficult,Sometimes,No
+40,Male,USA,QA,1000+,Never,0,Yes,No,No,Yes,Somewhat easy,Rarely,No
+23,Male,UK,QA,500-1000,Sometimes,1,Don't know,Yes,No,Yes,Don't know,Rarely,No
+53,Male,Sweden,Product Manager,500-1000,Sometimes,0,Don't know,Yes,Yes,Don't know,Somewhat difficult,Rarely,No
+21,Male,India,Product Manager,26-100,Always,0,Yes,Yes,Yes,Yes,Very easy,Rarely,No
+42,Male,Australia,Data Scientist,1000+,Always,0,Yes,Yes,Yes,Don't know,Don't know,Often,Yes
+45,Male,USA,Researcher,101-500,Sometimes,0,Yes,No,Yes,Yes,Very difficult,Rarely,Yes
+35,Female,France,Product Manager,1000+,Sometimes,0,Yes,Yes,Yes,Don't know,Somewhat difficult,Often,No
+26,Male,Sweden,Product Manager,101-500,Never,0,Yes,Yes,Yes,Yes,Somewhat difficult,Often,Yes
+36,Male,Brazil,Designer,500-1000,Always,0,Don't know,Not sure,No,Don't know,Very difficult,Often,Yes
+35,Male,USA,Manager,101-500,Sometimes,1,Yes,Yes,Yes,No,Very easy,Rarely,Yes
+35,Male,USA,Software Engineer,1000+,Sometimes,1,Yes,Yes,No,No,Somewhat difficult,Never,Yes
+38,Female,Sweden,Manager,101-500,Never,1,Yes,No,No,No,Don't know,Rarely,No
+34,Male,Brazil,Researcher,500-1000,Sometimes,0,Don't know,No,Yes,Yes,Somewhat easy,Often,Yes
+28,Male,Sweden,Designer,101-500,Always,0,No,Yes,Yes,Yes,Somewhat difficult,Sometimes,Yes
+43,Male,Canada,Data Scientist,500-1000,Sometimes,0,Yes,No,No,Don't know,Somewhat difficult,Never,No
+24,Male,Brazil,QA,1-25,Sometimes,0,No,No,No,Yes,Very difficult,Rarely,Yes
+30,Male,Sweden,Manager,1000+,Sometimes,0,Yes,Not sure,No,No,Very difficult,Rarely,Yes
+52,Male,Germany,DevOps,26-100,Sometimes,0,Yes,Yes,No,Yes,Somewhat easy,Sometimes,Yes
+30,Female,Canada,Designer,1-25,Always,0,Yes,Yes,No,No,Somewhat easy,Never,No
+55,Female,Brazil,Designer,1000+,Never,0,Yes,No,Don't know,Yes,Somewhat easy,Never,Yes
+38,Female,Canada,Manager,500-1000,Never,1,No,Yes,Yes,Yes,Very difficult,Often,Yes
+30,Male,Germany,Manager,101-500,Always,1,Don't know,Not sure,No,Don't know,Very difficult,Often,Yes
+47,Male,Canada,QA,101-500,Sometimes,1,Yes,Not sure,No,No,Very difficult,Sometimes,Yes
+21,Non-binary,Australia,QA,1000+,Sometimes,0,Yes,Not sure,Don't know,Yes,Very difficult,Often,No
+47,Female,USA,Manager,26-100,Never,1,No,No,Yes,No,Somewhat easy,Never,Yes
+48,Female,Canada,Product Manager,1-25,Always,0,No,Yes,No,No,Don't know,Sometimes,No
+21,Male,Canada,Researcher,500-1000,Sometimes,1,Yes,Not sure,Yes,No,Somewhat difficult,Sometimes,Yes
+26,Male,Germany,Designer,26-100,Sometimes,0,Yes,No,Yes,Yes,Somewhat difficult,Rarely,No
+46,Male,Netherlands,Software Engineer,500-1000,Always,0,Yes,No,No,Don't know,Very difficult,Sometimes,Yes
+25,Non-binary,USA,Software Engineer,26-100,Always,0,Don't know,No,No,No,Somewhat easy,Rarely,No
+55,Male,Brazil,QA,26-100,Always,0,No,Yes,Don't know,No,Don't know,Sometimes,Yes
+26,Female,Sweden,DevOps,101-500,Sometimes,0,Don't know,Not sure,Don't know,No,Very easy,Often,Yes
+24,Male,UK,Manager,101-500,Never,0,Don't know,Not sure,No,Don't know,Don't know,Never,No
+39,Male,France,Software Engineer,1000+,Sometimes,0,Don't know,Yes,No,No,Somewhat difficult,Never,Yes
+25,Male,Australia,Data Scientist,26-100,Never,1,Yes,Not sure,Yes,No,Very difficult,Sometimes,Yes
+53,Female,Australia,Manager,500-1000,Sometimes,0,Yes,Yes,No,Yes,Don't know,Rarely,Yes
+28,Male,USA,DevOps,1000+,Always,0,Yes,Not sure,Yes,Don't know,Very difficult,Sometimes,No
+56,Female,UK,QA,1-25,Sometimes,0,Yes,No,No,Don't know,Somewhat difficult,Never,No
+45,Male,Germany,Designer,1000+,Sometimes,1,Yes,Yes,Don't know,No,Don't know,Often,Yes
+33,Male,Netherlands,Manager,1-25,Sometimes,0,Yes,No,No,Yes,Don't know,Sometimes,Yes
+53,Male,UK,Product Manager,500-1000,Never,1,Yes,No,No,No,Very easy,Often,No
+48,Male,Germany,Software Engineer,26-100,Sometimes,1,Yes,No,Yes,Yes,Very difficult,Often,Yes
+56,Female,Australia,Data Scientist,101-500,Sometimes,0,Don't know,No,Yes,Yes,Somewhat difficult,Sometimes,No
+21,Female,France,Software Engineer,26-100,Sometimes,0,Don't know,Not sure,Yes,No,Very easy,Often,No
+31,Non-binary,UK,Researcher,500-1000,Always,0,Yes,No,Yes,Yes,Very difficult,Sometimes,Yes
+21,Female,Canada,Data Scientist,500-1000,Never,0,Yes,Not sure,No,Yes,Somewhat easy,Sometimes,No
+24,Male,UK,Researcher,500-1000,Always,0,No,Not sure,Don't know,Don't know,Don't know,Sometimes,Yes
+45,Male,Netherlands,QA,101-500,Sometimes,0,No,Yes,Yes,No,Very difficult,Rarely,Yes
+38,Male,Canada,Product Manager,101-500,Sometimes,0,Don't know,Not sure,Don't know,Don't know,Somewhat easy,Never,No
+33,Non-binary,India,Data Scientist,1-25,Never,0,Yes,No,Yes,Yes,Very difficult,Rarely,Yes
+28,Male,UK,Data Scientist,1000+,Always,0,Don't know,Yes,No,Yes,Very easy,Often,Yes
+22,Male,India,Designer,101-500,Never,1,Don't know,Not sure,No,Don't know,Don't know,Rarely,No
+34,Male,UK,Product Manager,1000+,Always,0,Yes,Yes,No,Don't know,Somewhat easy,Sometimes,No
+45,Female,USA,Product Manager,26-100,Always,0,Don't know,Yes,Don't know,Yes,Very easy,Sometimes,Yes
+54,Male,Sweden,DevOps,101-500,Sometimes,0,Don't know,Not sure,No,Yes,Very easy,Sometimes,No
+30,Male,India,Data Scientist,1-25,Sometimes,0,No,Yes,Yes,Yes,Very easy,Rarely,No
+52,Female,Germany,Software Engineer,26-100,Sometimes,0,Don't know,Yes,No,No,Somewhat easy,Often,No
+21,Male,France,Software Engineer,1-25,Never,1,Don't know,No,Yes,Yes,Very easy,Often,No
+55,Non-binary,India,Manager,26-100,Never,1,Yes,No,Don't know,Don't know,Somewhat difficult,Sometimes,Yes
+37,Female,UK,QA,500-1000,Sometimes,0,Yes,Yes,Yes,Don't know,Very easy,Never,No
+48,Male,Brazil,DevOps,1000+,Sometimes,0,Don't know,Not sure,Don't know,Don't know,Don't know,Rarely,No
+26,Male,Germany,Designer,1000+,Sometimes,0,Yes,No,No,Yes,Somewhat difficult,Often,Yes
+58,Non-binary,Sweden,QA,26-100,Always,0,Yes,Not sure,No,Yes,Very easy,Sometimes,Yes
+51,Female,Netherlands,Researcher,500-1000,Never,0,Don't know,Yes,No,Don't know,Somewhat easy,Sometimes,No
+43,Male,Brazil,Product Manager,500-1000,Always,0,Don't know,Yes,Yes,Yes,Somewhat difficult,Sometimes,Yes
+33,Male,Canada,Manager,500-1000,Sometimes,0,Yes,Not sure,No,Don't know,Somewhat difficult,Sometimes,Yes
+36,Female,Australia,Product Manager,1-25,Sometimes,0,Yes,No,No,Yes,Don't know,Rarely,Yes
+33,Female,Australia,Software Engineer,1000+,Sometimes,0,Yes,Yes,No,Don't know,Very easy,Often,No
+42,Male,Canada,Data Scientist,1000+,Sometimes,0,No,Not sure,No,Yes,Very difficult,Sometimes,No
+40,Male,USA,Software Engineer,101-500,Never,0,No,Yes,Yes,No,Somewhat easy,Sometimes,No
+43,Female,Canada,Software Engineer,26-100,Always,1,No,Yes,Yes,Don't know,Somewhat easy,Sometimes,Yes
+23,Male,Sweden,QA,1-25,Never,1,Yes,Not sure,Yes,Don't know,Somewhat difficult,Never,Yes
+45,Male,USA,Designer,500-1000,Never,0,Don't know,Not sure,Don't know,Don't know,Very difficult,Rarely,No
+49,Male,Australia,Software Engineer,101-500,Sometimes,0,Yes,No,Yes,No,Somewhat easy,Sometimes,Yes
+47,Female,Netherlands,Software Engineer,101-500,Always,1,Yes,No,Yes,No,Somewhat easy,Rarely,No
+38,Male,Australia,QA,1000+,Sometimes,0,Don't know,No,No,Don't know,Somewhat difficult,Sometimes,No
+43,Female,Brazil,QA,26-100,Always,1,Yes,Not sure,Don't know,No,Somewhat easy,Sometimes,Yes
+44,Male,Germany,DevOps,1000+,Never,0,Yes,Not sure,No,Don't know,Somewhat difficult,Sometimes,Yes
+48,Non-binary,Australia,Software Engineer,1000+,Always,0,Yes,No,Yes,Don't know,Somewhat easy,Sometimes,Yes
+46,Male,Brazil,Software Engineer,1-25,Always,1,Yes,Yes,Don't know,No,Somewhat easy,Sometimes,Yes
+52,Female,India,Manager,1000+,Always,0,No,Not sure,No,Don't know,Very easy,Never,No
+42,Male,Canada,Software Engineer,101-500,Sometimes,0,No,No,Yes,Yes,Very difficult,Never,Yes
+35,Female,Germany,DevOps,500-1000,Never,1,Don't know,No,No,Don't know,Somewhat easy,Sometimes,No
+28,Male,India,Software Engineer,1000+,Always,1,Don't know,Yes,No,Don't know,Very difficult,Sometimes,Yes
+32,Female,Brazil,Manager,1-25,Sometimes,0,Yes,Yes,No,Yes,Somewhat easy,Rarely,No
+23,Female,Australia,Designer,1-25,Always,1,Yes,No,Don't know,Yes,Very difficult,Sometimes,Yes
+23,Non-binary,France,Product Manager,500-1000,Sometimes,0,Don't know,Yes,Yes,Yes,Somewhat easy,Never,Yes
+41,Female,Netherlands,Product Manager,500-1000,Sometimes,1,Yes,Yes,Don't know,Yes,Somewhat easy,Often,Yes
+46,Male,Sweden,QA,1-25,Sometimes,0,Yes,No,No,Yes,Very difficult,Sometimes,No
+48,Female,USA,Manager,101-500,Always,1,No,No,Don't know,No,Don't know,Sometimes,No
+49,Male,India,Designer,26-100,Always,1,No,Not sure,No,No,Don't know,Rarely,No
+39,Female,Netherlands,Designer,101-500,Never,1,Yes,Yes,No,No,Very difficult,Rarely,Yes
+44,Female,Sweden,Product Manager,500-1000,Sometimes,0,No,Yes,Yes,No,Very difficult,Never,Yes
+33,Female,Germany,Manager,1000+,Sometimes,0,Don't know,Yes,Yes,No,Somewhat easy,Sometimes,Yes
+27,Male,Brazil,Data Scientist,1000+,Sometimes,0,No,Yes,Don't know,Yes,Very easy,Often,No
+48,Male,Germany,Researcher,1-25,Sometimes,0,Don't know,Yes,Yes,No,Somewhat easy,Often,Yes
+50,Male,Canada,Manager,1-25,Sometimes,0,No,No,No,Yes,Somewhat easy,Sometimes,No
+26,Male,Australia,DevOps,101-500,Never,0,Yes,Not sure,Yes,Yes,Somewhat difficult,Sometimes,Yes
+56,Male,USA,Manager,101-500,Always,0,Yes,Yes,No,Don't know,Very easy,Never,Yes
+34,Male,India,Manager,500-1000,Always,0,No,No,No,Yes,Somewhat difficult,Never,No
+56,Female,Australia,Software Engineer,1-25,Sometimes,1,Yes,Yes,No,Yes,Somewhat easy,Never,Yes
+56,Male,France,Software Engineer,26-100,Always,1,No,No,Yes,Don't know,Somewhat easy,Often,Yes
+47,Female,Brazil,Data Scientist,1000+,Sometimes,0,Don't know,No,No,Yes,Somewhat difficult,Sometimes,Yes
+32,Male,India,Data Scientist,26-100,Never,1,No,Yes,Yes,Yes,Very easy,Rarely,No
+22,Female,UK,Manager,1000+,Always,0,Yes,No,No,Yes,Very easy,Often,No
+40,Male,Canada,Researcher,500-1000,Always,0,No,Yes,No,Yes,Somewhat easy,Never,No
+28,Female,Canada,QA,1000+,Always,0,Don't know,Yes,No,Yes,Very difficult,Rarely,No
+55,Male,Germany,Researcher,101-500,Never,0,Yes,Yes,Don't know,No,Very difficult,Never,No
+34,Female,UK,QA,101-500,Always,0,Yes,No,Don't know,Yes,Somewhat difficult,Never,No
+28,Male,Canada,DevOps,1-25,Sometimes,0,No,Yes,Yes,No,Very easy,Sometimes,Yes
+47,Male,Australia,QA,101-500,Never,1,Yes,Not sure,No,No,Somewhat difficult,Rarely,Yes
+35,Male,Sweden,Researcher,26-100,Sometimes,1,Don't know,Yes,No,No,Very easy,Often,No
+30,Female,Canada,Data Scientist,1000+,Always,0,Yes,Yes,Yes,Yes,Very easy,Never,No
+30,Male,Canada,Product Manager,500-1000,Never,1,Yes,Yes,Yes,Yes,Very easy,Sometimes,Yes
+46,Female,Brazil,Manager,500-1000,Always,0,Yes,No,Don't know,No,Somewhat easy,Often,Yes
+49,Female,UK,Product Manager,26-100,Never,0,Yes,Yes,No,Yes,Somewhat easy,Sometimes,Yes
+55,Female,UK,QA,1-25,Always,0,Yes,No,No,Don't know,Very difficult,Rarely,No
+33,Female,Australia,Manager,500-1000,Never,1,Yes,Yes,Don't know,Yes,Somewhat difficult,Sometimes,Yes
+56,Male,Netherlands,Software Engineer,26-100,Never,0,Yes,Not sure,No,Yes,Somewhat easy,Sometimes,Yes
+52,Male,Netherlands,Data Scientist,26-100,Always,1,Yes,Not sure,Yes,Don't know,Very difficult,Sometimes,No
+42,Male,Sweden,DevOps,1-25,Never,1,Don't know,Yes,No,No,Very difficult,Often,Yes
+42,Female,Canada,Data Scientist,26-100,Always,0,Yes,Yes,No,No,Somewhat easy,Often,No
+27,Male,Australia,Product Manager,1000+,Sometimes,0,No,Not sure,No,Don't know,Don't know,Often,No
+32,Female,Netherlands,Designer,26-100,Never,1,Don't know,Yes,No,Yes,Somewhat difficult,Never,Yes
+56,Male,Germany,QA,101-500,Sometimes,0,No,No,Yes,Don't know,Somewhat difficult,Sometimes,Yes
+23,Female,Sweden,Manager,101-500,Sometimes,0,Yes,Yes,Yes,No,Somewhat difficult,Sometimes,Yes
+27,Male,UK,Manager,26-100,Sometimes,0,Yes,No,Yes,Yes,Don't know,Often,Yes
+51,Female,USA,DevOps,26-100,Never,0,No,Yes,Yes,Yes,Somewhat easy,Rarely,No
+54,Female,Netherlands,Software Engineer,26-100,Always,1,No,Yes,No,Yes,Somewhat easy,Often,Yes
+40,Male,Canada,DevOps,1000+,Never,0,No,No,Yes,Yes,Very difficult,Never,No
+49,Male,France,Data Scientist,1-25,Always,0,Yes,Yes,Yes,Don't know,Very easy,Rarely,Yes
+43,Male,Brazil,Designer,1-25,Sometimes,1,Yes,Yes,No,Yes,Somewhat easy,Sometimes,Yes
+32,Male,Germany,Software Engineer,1-25,Never,1,Yes,Yes,Yes,No,Somewhat difficult,Sometimes,Yes
+51,Male,Sweden,QA,1000+,Sometimes,0,Yes,Yes,Yes,Yes,Somewhat easy,Never,Yes
+55,Female,India,Designer,1-25,Never,0,Yes,No,Don't know,Yes,Somewhat easy,Sometimes,Yes
+47,Male,Germany,Designer,1000+,Always,0,Yes,No,Yes,Don't know,Somewhat difficult,Sometimes,No
+53,Male,India,Product Manager,101-500,Always,1,Yes,No,No,No,Very easy,Never,Yes
+42,Female,France,Product Manager,101-500,Never,0,No,Not sure,Don't know,Don't know,Somewhat difficult,Often,No
+21,Male,India,QA,1000+,Sometimes,1,Yes,Yes,Yes,Don't know,Somewhat difficult,Sometimes,No
+54,Male,India,Manager,1000+,Never,0,Yes,No,No,Don't know,Don't know,Sometimes,Yes
+45,Male,Brazil,DevOps,500-1000,Sometimes,0,Yes,No,No,Don't know,Somewhat difficult,Often,Yes
+24,Male,UK,Data Scientist,500-1000,Sometimes,0,Yes,No,Don't know,Yes,Don't know,Often,Yes
+46,Male,USA,Manager,500-1000,Sometimes,1,No,Yes,No,Yes,Very easy,Sometimes,Yes
+57,Female,Germany,DevOps,26-100,Always,1,Don't know,Yes,Don't know,Don't know,Somewhat difficult,Often,No
+38,Male,Netherlands,QA,101-500,Always,1,Don't know,No,Don't know,Yes,Somewhat easy,Sometimes,No
+32,Female,Australia,Product Manager,500-1000,Sometimes,0,Don't know,Yes,Don't know,Don't know,Somewhat easy,Sometimes,Yes
+41,Female,Netherlands,Product Manager,500-1000,Always,0,Don't know,Yes,Don't know,Yes,Somewhat difficult,Sometimes,Yes
+36,Female,Netherlands,Software Engineer,1000+,Sometimes,0,Yes,No,Yes,No,Very easy,Often,Yes
+56,Male,USA,Designer,1-25,Sometimes,0,No,No,No,Yes,Don't know,Sometimes,Yes
+45,Female,Australia,QA,26-100,Never,0,Yes,Yes,Yes,Yes,Somewhat easy,Rarely,No
+46,Male,UK,Designer,26-100,Sometimes,0,Yes,No,Yes,Yes,Somewhat difficult,Sometimes,No
+24,Male,India,Researcher,1-25,Sometimes,0,Yes,Yes,No,Yes,Very difficult,Rarely,No
+49,Male,Brazil,Researcher,1000+,Always,1,Yes,No,Don't know,Yes,Somewhat easy,Rarely,Yes
+53,Female,Brazil,Designer,101-500,Never,0,No,No,Don't know,Don't know,Don't know,Sometimes,Yes
+56,Male,Brazil,Software Engineer,26-100,Never,1,Yes,Yes,Yes,Yes,Somewhat easy,Rarely,Yes
+34,Female,USA,Software Engineer,1000+,Sometimes,1,No,Yes,Don't know,No,Very difficult,Rarely,No
+36,Female,France,Designer,101-500,Always,0,Don't know,Not sure,No,Yes,Somewhat easy,Often,No
+29,Non-binary,USA,Software Engineer,1-25,Sometimes,0,Yes,Yes,Don't know,No,Very easy,Often,Yes
+44,Female,Australia,QA,1000+,Never,0,Don't know,Yes,Yes,Don't know,Somewhat difficult,Sometimes,No
+46,Male,Brazil,Researcher,101-500,Sometimes,0,Yes,Yes,No,No,Somewhat difficult,Rarely,No
+58,Male,Sweden,Product Manager,500-1000,Always,0,Yes,Yes,Yes,Yes,Don't know,Never,No
+25,Male,USA,Designer,26-100,Never,1,No,No,Yes,Yes,Somewhat easy,Rarely,Yes
+36,Female,India,Data Scientist,26-100,Sometimes,1,Yes,Yes,Don't know,No,Somewhat easy,Rarely,No
+34,Male,France,Researcher,101-500,Always,1,Yes,Yes,Yes,Yes,Very easy,Sometimes,Yes
+22,Non-binary,France,Designer,26-100,Always,0,Yes,Yes,No,Yes,Don't know,Often,Yes
+40,Non-binary,UK,DevOps,500-1000,Always,1,Yes,Not sure,Don't know,Yes,Very difficult,Rarely,Yes
+38,Female,Australia,Data Scientist,101-500,Always,0,Yes,No,No,No,Somewhat difficult,Sometimes,No
+42,Female,UK,DevOps,1-25,Always,0,Don't know,Not sure,No,Yes,Somewhat easy,Often,No
+45,Male,France,Designer,26-100,Always,0,Yes,Not sure,No,Yes,Very difficult,Sometimes,No
+23,Female,India,Data Scientist,1000+,Always,1,Don't know,Yes,Yes,No,Very difficult,Never,No
+44,Male,Sweden,Software Engineer,26-100,Always,1,No,Yes,Yes,Yes,Somewhat difficult,Never,Yes
+46,Male,Australia,Manager,101-500,Sometimes,0,Yes,Yes,Yes,Yes,Somewhat easy,Rarely,No
+55,Male,Australia,QA,1-25,Always,0,No,Yes,Don't know,Yes,Somewhat difficult,Sometimes,No
+40,Male,Sweden,Product Manager,1-25,Always,1,No,Yes,Don't know,Don't know,Somewhat difficult,Never,Yes
+26,Non-binary,Netherlands,Software Engineer,1-25,Always,0,Don't know,Not sure,No,Don't know,Somewhat easy,Never,No
+54,Female,UK,Product Manager,101-500,Never,1,Yes,Yes,Don't know,Don't know,Somewhat easy,Often,Yes
+46,Male,Canada,QA,1000+,Always,1,Yes,Yes,Yes,No,Don't know,Never,Yes
+35,Male,Canada,Researcher,101-500,Always,1,No,No,No,No,Somewhat easy,Often,Yes
+38,Male,Germany,DevOps,26-100,Sometimes,1,No,Not sure,Yes,Yes,Somewhat easy,Sometimes,Yes
+53,Female,France,Product Manager,1-25,Always,0,Yes,Not sure,Yes,No,Somewhat easy,Never,Yes
+43,Female,Netherlands,Researcher,101-500,Always,0,No,No,Yes,No,Very easy,Sometimes,No
+58,Male,USA,Designer,101-500,Sometimes,1,Yes,Yes,No,Yes,Very difficult,Sometimes,Yes
+53,Male,Sweden,QA,101-500,Always,0,No,Yes,Yes,No,Very easy,Often,Yes
+58,Male,France,Designer,1-25,Never,0,Yes,Not sure,No,No,Very difficult,Often,No
+21,Male,India,Data Scientist,101-500,Never,0,Don't know,No,Don't know,Don't know,Very difficult,Often,No
+40,Male,Brazil,DevOps,1-25,Always,0,Don't know,No,Don't know,Yes,Somewhat difficult,Sometimes,No
+47,Male,Germany,Manager,1000+,Sometimes,0,Yes,No,No,Don't know,Somewhat easy,Sometimes,No
+54,Female,Canada,QA,101-500,Sometimes,1,No,Yes,Don't know,Don't know,Somewhat difficult,Often,Yes
+31,Female,Canada,Designer,1-25,Always,0,Yes,Yes,No,No,Somewhat easy,Rarely,No
+48,Male,Sweden,Software Engineer,500-1000,Sometimes,0,Don't know,Yes,Don't know,Yes,Don't know,Sometimes,No
+51,Male,UK,Designer,101-500,Never,0,Don't know,Yes,Yes,Don't know,Somewhat easy,Often,No
+52,Male,UK,Data Scientist,101-500,Always,1,No,Yes,No,No,Don't know,Sometimes,No
+28,Female,Australia,DevOps,500-1000,Sometimes,0,Yes,No,No,Yes,Very difficult,Sometimes,No
+46,Male,USA,Software Engineer,26-100,Sometimes,1,No,Yes,No,Don't know,Very easy,Often,No
+26,Female,Canada,Product Manager,500-1000,Sometimes,1,Don't know,Yes,No,Don't know,Very difficult,Often,Yes
+51,Male,Netherlands,DevOps,1000+,Sometimes,1,No,Yes,Yes,No,Somewhat difficult,Never,Yes
+40,Male,Brazil,Designer,101-500,Never,0,No,Yes,Don't know,Yes,Don't know,Often,Yes
+38,Male,Netherlands,Product Manager,26-100,Never,0,Yes,Not sure,No,Yes,Very difficult,Sometimes,Yes
+29,Male,India,QA,26-100,Sometimes,0,No,Yes,No,Yes,Somewhat difficult,Sometimes,No
+30,Female,UK,Product Manager,1-25,Sometimes,0,Don't know,Not sure,Don't know,No,Very difficult,Sometimes,No
+22,Female,UK,Product Manager,101-500,Sometimes,0,Don't know,Yes,No,Yes,Somewhat difficult,Sometimes,Yes
+46,Male,Australia,Researcher,1-25,Sometimes,0,Yes,No,No,No,Very easy,Sometimes,Yes
+25,Male,UK,DevOps,101-500,Always,0,No,No,Yes,Yes,Very easy,Sometimes,Yes
+36,Male,India,Researcher,1000+,Sometimes,0,Yes,Yes,No,Yes,Don't know,Rarely,Yes
+37,Female,Netherlands,Designer,101-500,Always,1,Yes,No,Yes,Don't know,Very difficult,Never,Yes
+58,Male,Netherlands,Researcher,1-25,Sometimes,0,Don't know,No,Yes,Yes,Somewhat easy,Sometimes,No
+24,Male,Brazil,Researcher,101-500,Always,0,Don't know,No,No,Yes,Very difficult,Sometimes,No
+51,Male,France,Researcher,101-500,Sometimes,0,Yes,Yes,Yes,Yes,Don't know,Rarely,Yes
+42,Female,Canada,Manager,26-100,Sometimes,0,Yes,Yes,No,Yes,Somewhat difficult,Sometimes,Yes
+43,Male,France,Manager,500-1000,Sometimes,0,Yes,Yes,Yes,Don't know,Don't know,Rarely,No
+33,Male,USA,Researcher,101-500,Sometimes,0,Yes,No,Yes,Don't know,Don't know,Sometimes,Yes
+52,Female,UK,DevOps,26-100,Sometimes,1,No,No,No,Don't know,Somewhat difficult,Often,Yes
+46,Male,UK,QA,26-100,Sometimes,0,Yes,No,No,Yes,Very difficult,Sometimes,Yes
+45,Male,Brazil,Software Engineer,101-500,Always,1,Yes,No,Yes,No,Somewhat easy,Often,Yes
+44,Male,Brazil,QA,1000+,Always,1,Yes,Yes,Don't know,Don't know,Somewhat difficult,Often,Yes
+54,Male,Canada,Researcher,1-25,Never,0,Yes,No,Yes,Yes,Somewhat easy,Often,No
+21,Male,India,Researcher,1000+,Never,0,Yes,No,Don't know,Yes,Somewhat difficult,Rarely,No
+57,Male,France,DevOps,1-25,Always,0,Don't know,Yes,Don't know,Don't know,Very difficult,Often,No
+35,Female,France,Manager,500-1000,Always,1,Don't know,Yes,Yes,Yes,Very difficult,Often,Yes
+51,Female,France,Product Manager,1-25,Always,1,Don't know,No,No,No,Very easy,Never,Yes
+31,Male,Canada,Manager,26-100,Sometimes,0,Don't know,Yes,Yes,Yes,Somewhat difficult,Often,No
+40,Male,India,Researcher,101-500,Always,0,No,Yes,Don't know,No,Somewhat easy,Rarely,Yes
+25,Male,UK,Manager,1000+,Never,1,Yes,Not sure,Yes,Don't know,Very difficult,Rarely,No
+55,Male,France,QA,500-1000,Sometimes,1,Yes,Yes,Don't know,Yes,Somewhat difficult,Rarely,Yes
+22,Non-binary,Germany,Designer,1000+,Sometimes,1,Yes,Yes,Yes,Yes,Somewhat easy,Rarely,Yes
+33,Male,Brazil,DevOps,500-1000,Sometimes,0,Don't know,Yes,No,Don't know,Very difficult,Never,No
+50,Male,Brazil,Software Engineer,101-500,Always,1,Yes,No,Don't know,No,Somewhat easy,Never,Yes
+54,Female,UK,DevOps,1-25,Sometimes,1,Yes,Not sure,Yes,Yes,Very difficult,Often,Yes
+46,Male,Sweden,Data Scientist,101-500,Sometimes,0,No,Yes,Yes,Don't know,Very difficult,Never,No
+37,Female,USA,Researcher,1000+,Sometimes,0,Yes,Yes,Don't know,Don't know,Very difficult,Sometimes,Yes
+25,Female,Germany,Data Scientist,1000+,Sometimes,1,Yes,No,No,Yes,Very easy,Never,Yes
+36,Male,Australia,Product Manager,500-1000,Sometimes,0,Don't know,Yes,Yes,Yes,Somewhat difficult,Often,No
+53,Male,Canada,Software Engineer,1000+,Always,1,Don't know,Not sure,Yes,Don't know,Somewhat easy,Sometimes,Yes
+26,Male,UK,Manager,26-100,Sometimes,0,Yes,Yes,Yes,No,Very difficult,Never,No
+26,Male,France,Product Manager,1-25,Always,0,Yes,Yes,Yes,No,Somewhat difficult,Sometimes,Yes
+35,Male,UK,Researcher,1000+,Always,1,Yes,No,Don't know,No,Somewhat easy,Sometimes,No
+57,Male,Australia,Software Engineer,500-1000,Never,0,Yes,Yes,No,Yes,Somewhat difficult,Rarely,Yes
+45,Male,Netherlands,Researcher,1000+,Never,1,Yes,Not sure,No,Yes,Somewhat easy,Rarely,No
+58,Female,Brazil,Data Scientist,26-100,Sometimes,0,No,Yes,Yes,Yes,Very difficult,Sometimes,Yes
+52,Female,USA,Data Scientist,101-500,Sometimes,0,Yes,Yes,No,Yes,Somewhat easy,Sometimes,No
+28,Male,Australia,Software Engineer,500-1000,Always,0,Don't know,Yes,Yes,No,Very difficult,Rarely,No
+40,Female,UK,Data Scientist,1-25,Sometimes,1,Yes,Not sure,No,Yes,Don't know,Sometimes,Yes
+42,Male,Canada,Product Manager,500-1000,Sometimes,0,Yes,No,Yes,Yes,Don't know,Often,Yes
+53,Male,Netherlands,Manager,1000+,Always,0,Yes,Yes,No,No,Somewhat easy,Sometimes,No
+25,Male,USA,Researcher,500-1000,Never,1,No,Not sure,Don't know,Don't know,Somewhat difficult,Never,No
+57,Male,Germany,QA,26-100,Always,1,Yes,No,Don't know,Don't know,Don't know,Often,Yes
+49,Female,France,Product Manager,1-25,Always,0,No,Yes,No,Yes,Somewhat difficult,Often,Yes
+31,Male,Canada,Software Engineer,26-100,Always,0,Yes,No,Yes,Yes,Very easy,Sometimes,Yes
+45,Male,Netherlands,Software Engineer,26-100,Always,1,No,No,Yes,Yes,Don't know,Never,Yes
+29,Male,Netherlands,Software Engineer,1-25,Sometimes,0,Don't know,Yes,No,Don't know,Somewhat easy,Often,Yes
+27,Male,India,Software Engineer,1000+,Sometimes,1,Yes,Yes,Yes,Yes,Very difficult,Often,Yes
+40,Non-binary,France,Researcher,1-25,Sometimes,0,Don't know,Not sure,No,No,Somewhat difficult,Sometimes,Yes
+58,Non-binary,Brazil,Data Scientist,26-100,Never,0,Yes,Not sure,No,No,Somewhat easy,Sometimes,Yes
+58,Female,Sweden,Researcher,1000+,Always,0,Yes,No,Don't know,No,Somewhat easy,Never,No
+40,Male,Brazil,Data Scientist,26-100,Always,1,Don't know,No,Yes,Yes,Very easy,Never,No
+21,Male,Canada,Software Engineer,1-25,Never,0,Yes,Yes,No,Yes,Very easy,Sometimes,No
+21,Male,Australia,DevOps,101-500,Always,0,Don't know,Yes,Yes,Yes,Very easy,Never,No
+38,Male,USA,Manager,500-1000,Never,1,No,Yes,No,No,Somewhat difficult,Often,Yes
+46,Male,France,DevOps,101-500,Sometimes,0,Don't know,Not sure,Yes,No,Somewhat easy,Never,Yes
+56,Male,USA,QA,1-25,Sometimes,1,No,Not sure,Yes,Don't know,Somewhat easy,Sometimes,Yes
+55,Male,USA,Researcher,1000+,Always,0,Yes,Yes,Yes,Yes,Somewhat difficult,Sometimes,Yes
+29,Male,France,Data Scientist,1-25,Sometimes,0,Yes,No,No,Yes,Very difficult,Sometimes,Yes
+38,Male,France,Manager,500-1000,Always,1,Yes,Not sure,Yes,Don't know,Somewhat difficult,Rarely,Yes
+48,Female,India,Data Scientist,500-1000,Always,0,No,Not sure,Don't know,Yes,Very difficult,Sometimes,Yes
+40,Female,Sweden,Designer,500-1000,Sometimes,1,Yes,Yes,Yes,Yes,Don't know,Never,Yes
+57,Non-binary,Germany,Researcher,500-1000,Always,0,No,No,No,Yes,Somewhat easy,Rarely,No
+33,Female,France,Researcher,101-500,Sometimes,0,Yes,No,Don't know,Yes,Very easy,Often,No
+35,Female,Sweden,Product Manager,1-25,Always,1,Don't know,Yes,Don't know,Yes,Somewhat difficult,Rarely,Yes
+58,Female,Sweden,Software Engineer,1-25,Always,0,Yes,No,No,Yes,Somewhat easy,Rarely,Yes
+45,Female,Australia,Product Manager,26-100,Always,1,Yes,Yes,Yes,Yes,Somewhat difficult,Often,Yes
+38,Non-binary,Australia,Data Scientist,1-25,Sometimes,0,Yes,Yes,Don't know,Yes,Somewhat difficult,Rarely,No
+37,Male,USA,Software Engineer,500-1000,Always,0,No,No,Yes,No,Somewhat easy,Sometimes,No
+38,Male,Australia,Designer,26-100,Sometimes,0,No,No,Don't know,Yes,Somewhat difficult,Often,Yes
+22,Female,Brazil,DevOps,26-100,Never,0,No,Yes,Yes,Yes,Somewhat easy,Never,Yes
+24,Male,India,Data Scientist,500-1000,Always,1,Yes,No,No,Don't know,Very difficult,Sometimes,Yes
+39,Male,Sweden,Researcher,500-1000,Sometimes,0,Yes,No,Yes,Yes,Don't know,Rarely,No
+33,Male,Sweden,QA,1000+,Sometimes,1,Yes,Yes,Yes,Don't know,Somewhat difficult,Often,Yes
+53,Male,Germany,Researcher,101-500,Always,0,Yes,No,No,Don't know,Somewhat easy,Rarely,Yes
+34,Male,UK,DevOps,500-1000,Always,0,Don't know,Yes,Don't know,Don't know,Very easy,Rarely,No
+50,Male,Australia,Software Engineer,101-500,Sometimes,0,Don't know,Yes,Yes,Don't know,Somewhat easy,Sometimes,Yes
+43,Male,USA,DevOps,1-25,Always,1,Yes,Yes,No,No,Somewhat easy,Rarely,Yes
+31,Male,Australia,Product Manager,1-25,Sometimes,0,Yes,Not sure,Yes,Yes,Somewhat difficult,Often,No
+43,Female,Sweden,DevOps,26-100,Sometimes,1,Don't know,Not sure,Don't know,No,Don't know,Sometimes,No
+41,Male,Germany,QA,500-1000,Always,1,Yes,No,No,Don't know,Somewhat difficult,Often,Yes
+47,Male,Netherlands,Manager,1000+,Always,1,Yes,Yes,Don't know,Yes,Somewhat difficult,Never,Yes
+41,Male,Netherlands,Manager,1000+,Always,0,No,No,Yes,Yes,Somewhat easy,Never,No
+23,Female,UK,Software Engineer,1-25,Sometimes,1,Don't know,No,No,Yes,Very easy,Never,No
+54,Male,USA,Designer,1000+,Never,0,Yes,Not sure,No,Yes,Don't know,Never,No
+51,Female,Netherlands,Manager,1-25,Always,1,Don't know,Yes,No,Yes,Somewhat difficult,Sometimes,Yes
+31,Male,Brazil,Software Engineer,1-25,Never,0,Don't know,No,Yes,Yes,Somewhat difficult,Sometimes,No
+39,Male,Australia,Designer,500-1000,Sometimes,1,Yes,Yes,No,No,Very difficult,Sometimes,Yes
+46,Male,UK,Manager,1000+,Always,0,No,Yes,Yes,No,Somewhat difficult,Rarely,No
+57,Male,Brazil,QA,1000+,Sometimes,0,Yes,Not sure,Yes,Yes,Very easy,Rarely,Yes
+44,Female,UK,Designer,101-500,Sometimes,1,Yes,Not sure,No,Yes,Don't know,Never,Yes
+43,Male,Brazil,Designer,26-100,Always,0,No,No,Yes,No,Very easy,Sometimes,Yes
+31,Female,Canada,Researcher,101-500,Never,0,Yes,Yes,Yes,Yes,Don't know,Rarely,Yes
+24,Non-binary,Sweden,Software Engineer,1-25,Sometimes,0,No,No,Yes,Don't know,Somewhat difficult,Sometimes,Yes
+40,Male,India,Designer,1-25,Sometimes,1,Yes,Yes,No,Yes,Somewhat difficult,Rarely,No
+35,Non-binary,Brazil,Data Scientist,101-500,Sometimes,0,Don't know,No,No,Yes,Somewhat easy,Never,No
+33,Male,Canada,Product Manager,500-1000,Sometimes,1,Yes,No,Yes,Yes,Very easy,Never,Yes
+39,Male,UK,Researcher,500-1000,Sometimes,1,Yes,Yes,No,No,Very easy,Often,No
+31,Female,UK,Manager,1-25,Sometimes,1,Yes,Yes,No,Don't know,Very difficult,Never,Yes
+39,Female,Sweden,Software Engineer,1000+,Sometimes,0,No,No,No,Yes,Somewhat difficult,Often,No
+39,Male,India,Product Manager,26-100,Never,1,No,Yes,No,Don't know,Somewhat easy,Often,Yes
+25,Male,France,Data Scientist,1-25,Never,0,Yes,Yes,No,No,Very difficult,Often,No
+36,Female,USA,Data Scientist,500-1000,Sometimes,0,Yes,Not sure,Don't know,Don't know,Somewhat difficult,Often,No
+29,Female,India,Product Manager,500-1000,Always,0,No,Yes,No,Don't know,Somewhat easy,Rarely,Yes
+26,Male,France,Data Scientist,1-25,Never,0,No,Yes,Don't know,Yes,Very easy,Never,No
+49,Female,Brazil,DevOps,101-500,Always,0,Yes,Yes,Yes,No,Very difficult,Often,Yes
+39,Female,UK,Designer,1000+,Sometimes,1,Yes,Yes,Don't know,Yes,Don't know,Sometimes,No
+30,Male,USA,DevOps,500-1000,Always,1,Yes,Yes,Yes,Don't know,Don't know,Sometimes,Yes
+54,Male,Sweden,Designer,26-100,Sometimes,1,Yes,Yes,No,Don't know,Somewhat easy,Sometimes,No
+25,Male,Netherlands,Product Manager,26-100,Sometimes,1,No,No,Yes,Yes,Somewhat difficult,Sometimes,No
+36,Male,France,Software Engineer,1-25,Always,1,No,No,Yes,Don't know,Somewhat easy,Never,No
+22,Male,Brazil,QA,1000+,Sometimes,0,No,Not sure,No,No,Somewhat difficult,Rarely,Yes
+25,Male,UK,QA,26-100,Always,1,Yes,Yes,Don't know,Don't know,Very easy,Sometimes,No
+35,Female,Germany,Designer,101-500,Sometimes,1,Don't know,Not sure,No,Yes,Don't know,Never,No
+48,Female,Canada,Software Engineer,101-500,Always,1,Don't know,Yes,Yes,Don't know,Very difficult,Sometimes,Yes
+35,Male,Sweden,DevOps,1000+,Always,0,No,Not sure,Don't know,Yes,Somewhat easy,Never,No
+22,Female,USA,Designer,101-500,Always,1,Don't know,No,Yes,No,Somewhat difficult,Sometimes,No
+34,Female,Brazil,Researcher,1000+,Always,0,Yes,Not sure,Yes,No,Somewhat easy,Often,Yes
+52,Female,France,Manager,26-100,Never,0,Yes,Yes,No,Don't know,Somewhat easy,Often,Yes
+26,Male,Sweden,DevOps,26-100,Never,0,Yes,Yes,Don't know,Don't know,Somewhat easy,Sometimes,Yes
+56,Female,Brazil,Manager,26-100,Sometimes,0,No,Yes,No,Yes,Somewhat easy,Often,No
+33,Non-binary,India,QA,101-500,Sometimes,0,Yes,Not sure,No,No,Very easy,Sometimes,No
+41,Male,India,Designer,26-100,Never,0,No,No,Don't know,Yes,Somewhat difficult,Often,No
+30,Male,USA,Manager,1-25,Never,0,No,Yes,Don't know,Yes,Very difficult,Often,Yes
+24,Male,UK,QA,1-25,Sometimes,0,Don't know,No,No,Don't know,Don't know,Sometimes,Yes
+26,Female,Germany,Product Manager,1000+,Never,0,Yes,Yes,Don't know,Don't know,Somewhat difficult,Sometimes,No
+56,Female,UK,Designer,26-100,Sometimes,0,Yes,No,No,Yes,Don't know,Often,Yes
+47,Female,UK,QA,101-500,Always,0,No,Yes,Yes,Don't know,Somewhat difficult,Never,Yes
+26,Male,Brazil,Data Scientist,101-500,Always,1,Yes,No,No,No,Very difficult,Sometimes,Yes
+48,Male,Sweden,Manager,26-100,Sometimes,1,No,Yes,No,Yes,Very difficult,Often,Yes
+57,Female,France,Product Manager,101-500,Always,1,Yes,Not sure,Don't know,Don't know,Don't know,Often,Yes
+58,Male,Canada,Manager,1000+,Always,1,Don't know,Yes,Don't know,Yes,Somewhat easy,Sometimes,No
+36,Female,France,QA,500-1000,Always,1,Yes,Not sure,Yes,Yes,Don't know,Sometimes,Yes
+54,Male,Australia,Data Scientist,500-1000,Sometimes,0,Yes,Yes,No,Don't know,Very easy,Rarely,No
+51,Male,Australia,Product Manager,1-25,Always,0,No,No,Yes,No,Don't know,Sometimes,Yes
+32,Female,Germany,Software Engineer,500-1000,Always,0,Yes,Yes,Yes,No,Very easy,Rarely,No
+57,Non-binary,Sweden,Researcher,26-100,Sometimes,1,Yes,Not sure,Don't know,Don't know,Somewhat easy,Sometimes,Yes
+30,Male,UK,Data Scientist,1-25,Sometimes,0,Yes,Yes,No,Don't know,Very easy,Sometimes,No
+46,Non-binary,UK,Data Scientist,500-1000,Sometimes,1,Yes,Not sure,Yes,Don't know,Somewhat easy,Never,Yes
+46,Non-binary,Sweden,Product Manager,1000+,Never,1,Don't know,No,Don't know,No,Somewhat difficult,Often,No
+28,Male,UK,Designer,1000+,Sometimes,1,Yes,Yes,No,Don't know,Very difficult,Rarely,Yes
+51,Male,France,Software Engineer,500-1000,Never,0,Yes,No,Yes,No,Somewhat difficult,Sometimes,No
+34,Female,Australia,Manager,26-100,Sometimes,1,Yes,No,Yes,Don't know,Don't know,Never,Yes
+55,Female,Canada,QA,26-100,Always,1,Yes,Yes,Yes,Yes,Somewhat difficult,Rarely,Yes
+54,Male,Canada,DevOps,26-100,Always,0,Don't know,No,Yes,Yes,Very difficult,Often,No
+30,Female,Netherlands,Data Scientist,1000+,Sometimes,0,No,Yes,No,Don't know,Somewhat difficult,Sometimes,No
+40,Male,Australia,DevOps,1-25,Sometimes,1,Yes,Yes,Don't know,Yes,Somewhat difficult,Sometimes,Yes
+55,Male,UK,Software Engineer,101-500,Always,0,Yes,No,No,Yes,Somewhat difficult,Sometimes,Yes
+58,Male,Australia,Software Engineer,101-500,Never,0,Don't know,No,Don't know,Yes,Somewhat difficult,Never,No
+33,Male,Canada,Manager,101-500,Always,1,No,No,Yes,Don't know,Somewhat difficult,Sometimes,Yes
+50,Female,India,Manager,26-100,Sometimes,1,No,Not sure,Don't know,Yes,Don't know,Rarely,No
+33,Male,UK,Data Scientist,1-25,Never,0,Don't know,No,Don't know,Yes,Very difficult,Sometimes,No
+56,Male,Brazil,Data Scientist,26-100,Sometimes,1,Yes,No,Don't know,Yes,Don't know,Often,No
+53,Male,France,Data Scientist,500-1000,Always,1,Yes,No,Don't know,Yes,Don't know,Often,Yes
+42,Non-binary,USA,Product Manager,101-500,Always,0,Yes,No,No,Yes,Somewhat difficult,Often,Yes
+33,Female,USA,Designer,1000+,Always,1,No,No,No,Don't know,Somewhat difficult,Often,Yes
+26,Non-binary,France,Manager,1000+,Never,0,No,Not sure,Yes,Don't know,Don't know,Often,Yes
+34,Male,USA,QA,1000+,Always,1,Yes,No,Yes,Yes,Very difficult,Sometimes,Yes
+54,Male,India,Researcher,1-25,Always,0,Yes,Yes,Yes,Yes,Very difficult,Sometimes,Yes
+29,Male,USA,QA,101-500,Sometimes,0,Don't know,Not sure,Yes,No,Somewhat difficult,Sometimes,Yes
+30,Male,France,QA,1000+,Always,0,No,No,Don't know,Don't know,Don't know,Sometimes,Yes
+57,Male,Sweden,Researcher,26-100,Never,0,Yes,No,No,Don't know,Very difficult,Often,Yes
+37,Female,Brazil,Software Engineer,1-25,Sometimes,0,Yes,Not sure,Yes,Yes,Somewhat easy,Rarely,No
+40,Female,Netherlands,Data Scientist,1000+,Always,0,Yes,Not sure,Yes,Yes,Very difficult,Often,Yes
+57,Female,Australia,QA,1000+,Sometimes,1,Yes,Yes,No,Yes,Very difficult,Sometimes,Yes
+25,Male,USA,DevOps,26-100,Sometimes,1,Yes,Not sure,Yes,Don't know,Very difficult,Sometimes,Yes
+45,Male,USA,Manager,26-100,Always,1,No,Yes,No,Yes,Somewhat difficult,Never,No
+41,Male,Sweden,QA,26-100,Sometimes,0,No,Yes,Don't know,Yes,Very difficult,Rarely,No
+29,Non-binary,Germany,Manager,500-1000,Always,1,Yes,Yes,No,No,Very difficult,Sometimes,Yes
+24,Male,Brazil,DevOps,26-100,Always,1,Yes,Yes,Don't know,Yes,Very easy,Rarely,Yes
+49,Non-binary,USA,Software Engineer,26-100,Never,0,Yes,No,Yes,Yes,Somewhat easy,Often,Yes
+51,Female,France,Data Scientist,26-100,Never,0,No,Not sure,No,Don't know,Very easy,Often,Yes
+47,Male,Canada,Data Scientist,500-1000,Sometimes,0,Yes,Yes,Don't know,No,Very difficult,Rarely,Yes
+47,Male,Australia,DevOps,1-25,Sometimes,0,Yes,Not sure,Yes,Yes,Very easy,Sometimes,Yes
+52,Male,Germany,DevOps,1000+,Always,0,Yes,Yes,No,Don't know,Somewhat difficult,Rarely,No
+23,Male,Sweden,QA,26-100,Never,0,Yes,No,Don't know,Yes,Don't know,Sometimes,Yes
+32,Male,USA,Manager,101-500,Sometimes,0,Yes,No,No,Yes,Don't know,Often,Yes
+42,Female,Sweden,Designer,1-25,Never,0,Don't know,Yes,No,Yes,Somewhat difficult,Often,Yes
+25,Male,Sweden,Designer,26-100,Never,1,No,Not sure,Yes,No,Somewhat difficult,Sometimes,Yes
+21,Female,Canada,Data Scientist,500-1000,Sometimes,1,Yes,Yes,Don't know,Don't know,Very easy,Rarely,Yes
+38,Male,Sweden,DevOps,101-500,Always,0,No,No,No,Don't know,Very difficult,Often,Yes
+33,Male,UK,Software Engineer,1000+,Always,1,Don't know,Yes,Don't know,No,Don't know,Sometimes,Yes
+58,Male,Netherlands,Researcher,101-500,Always,0,Yes,No,Don't know,Don't know,Somewhat difficult,Often,Yes
+37,Female,Brazil,Manager,26-100,Always,0,Yes,No,No,Yes,Somewhat difficult,Never,Yes
+38,Male,Netherlands,Software Engineer,500-1000,Sometimes,1,Yes,Not sure,No,No,Don't know,Rarely,Yes
+24,Female,UK,QA,26-100,Never,1,No,No,Yes,Yes,Very easy,Sometimes,Yes
+48,Male,Germany,Software Engineer,500-1000,Sometimes,0,Yes,Not sure,No,Yes,Don't know,Sometimes,Yes
+25,Male,Canada,Data Scientist,26-100,Sometimes,1,No,Not sure,Yes,No,Somewhat easy,Sometimes,Yes
+46,Female,Sweden,Data Scientist,1000+,Never,1,No,Yes,Yes,Yes,Don't know,Never,No
+46,Male,USA,Product Manager,101-500,Always,1,Yes,No,No,Yes,Very difficult,Rarely,Yes
+56,Male,Brazil,QA,1000+,Always,0,No,No,Yes,Yes,Very easy,Never,No
+57,Non-binary,UK,Software Engineer,500-1000,Never,1,Yes,No,Yes,Yes,Somewhat easy,Sometimes,Yes
+31,Female,USA,Product Manager,26-100,Always,0,Yes,Not sure,Yes,Don't know,Somewhat difficult,Often,Yes
+50,Female,Sweden,Designer,101-500,Always,0,Yes,No,No,Yes,Somewhat easy,Never,Yes
+37,Female,Netherlands,Data Scientist,101-500,Never,0,Yes,Yes,No,Yes,Very easy,Sometimes,Yes
+33,Male,Brazil,Designer,1000+,Always,0,No,No,No,No,Very difficult,Rarely,Yes
+45,Female,Australia,Manager,1000+,Never,0,Yes,Yes,Don't know,Yes,Very difficult,Sometimes,No
+46,Male,France,Software Engineer,101-500,Never,0,Yes,Not sure,Don't know,No,Somewhat easy,Sometimes,Yes
+37,Male,Germany,QA,1000+,Sometimes,0,Yes,Yes,Yes,Yes,Somewhat difficult,Never,Yes
+24,Female,Netherlands,DevOps,1-25,Sometimes,0,No,Not sure,No,No,Very difficult,Often,Yes
+43,Female,USA,Designer,1000+,Sometimes,0,Don't know,No,No,No,Very difficult,Never,No
+30,Male,Australia,Product Manager,101-500,Always,1,No,Not sure,No,Yes,Somewhat easy,Sometimes,Yes
+57,Male,Sweden,Data Scientist,500-1000,Always,1,Yes,Yes,Don't know,Yes,Don't know,Sometimes,Yes
+40,Male,Brazil,Designer,1000+,Sometimes,0,Don't know,No,No,Yes,Somewhat difficult,Never,Yes
+26,Male,India,Software Engineer,1000+,Sometimes,0,Yes,Yes,Don't know,Yes,Somewhat difficult,Sometimes,No
+54,Female,Brazil,Researcher,1000+,Sometimes,0,Yes,Yes,No,Don't know,Very difficult,Rarely,Yes
+29,Female,USA,QA,26-100,Sometimes,0,No,Not sure,No,No,Somewhat easy,Often,No
+37,Male,UK,Software Engineer,1000+,Sometimes,0,Yes,Yes,Don't know,Yes,Somewhat easy,Sometimes,No
+43,Male,Netherlands,Manager,1-25,Always,0,No,Yes,No,No,Somewhat easy,Often,No
+22,Female,Australia,Software Engineer,101-500,Sometimes,0,Don't know,Yes,Yes,No,Somewhat difficult,Rarely,Yes
+49,Non-binary,France,Data Scientist,500-1000,Never,0,Yes,No,Yes,Yes,Don't know,Often,No
+27,Male,Brazil,Software Engineer,1000+,Never,0,Yes,Yes,Don't know,No,Very difficult,Sometimes,Yes
+40,Male,Netherlands,QA,101-500,Always,1,Yes,Yes,No,Yes,Somewhat difficult,Sometimes,Yes
+54,Male,Netherlands,QA,26-100,Never,0,No,Not sure,Yes,Don't know,Somewhat easy,Sometimes,No
+40,Male,Brazil,DevOps,26-100,Sometimes,0,Don't know,Yes,Yes,Yes,Somewhat easy,Often,No
+50,Male,Canada,Designer,26-100,Always,1,Don't know,Yes,No,Yes,Somewhat difficult,Often,No
+51,Male,Canada,Manager,1000+,Never,1,Yes,No,No,Don't know,Very difficult,Sometimes,No
+49,Male,USA,Data Scientist,500-1000,Always,1,Yes,No,Yes,Yes,Somewhat difficult,Often,Yes
+44,Male,Germany,Product Manager,500-1000,Sometimes,0,Don't know,Yes,Don't know,Don't know,Somewhat difficult,Never,Yes
+34,Male,Germany,Researcher,1000+,Sometimes,1,Yes,Yes,No,No,Very difficult,Sometimes,No
+49,Non-binary,USA,DevOps,26-100,Never,0,No,Not sure,Yes,Yes,Don't know,Sometimes,No
+35,Non-binary,India,Software Engineer,500-1000,Always,1,Yes,Yes,Don't know,No,Don't know,Sometimes,Yes
+39,Male,Australia,QA,26-100,Sometimes,0,Yes,Yes,Don't know,Yes,Very difficult,Sometimes,Yes
+35,Male,Canada,Data Scientist,1000+,Always,1,Yes,No,No,Yes,Very difficult,Sometimes,Yes
+31,Male,Canada,DevOps,101-500,Sometimes,1,Yes,Yes,No,No,Somewhat difficult,Never,No
+24,Male,UK,Software Engineer,1000+,Always,0,Yes,Not sure,No,Don't know,Somewhat easy,Rarely,No
+24,Male,France,Software Engineer,1-25,Always,0,No,Not sure,No,Yes,Somewhat difficult,Never,No
+22,Male,France,Product Manager,500-1000,Always,0,No,Yes,Yes,Yes,Somewhat difficult,Rarely,No
+58,Female,Sweden,Manager,500-1000,Sometimes,0,Yes,No,Don't know,Yes,Somewhat easy,Rarely,No
+29,Male,India,Data Scientist,500-1000,Sometimes,1,Yes,Not sure,Don't know,Yes,Very easy,Rarely,Yes
+41,Male,USA,Product Manager,101-500,Always,0,Don't know,Not sure,Don't know,No,Somewhat difficult,Never,No
+27,Female,India,Data Scientist,26-100,Sometimes,0,Don't know,Yes,Yes,Yes,Very easy,Never,No
+29,Male,Brazil,DevOps,1000+,Sometimes,1,Yes,No,Don't know,Yes,Don't know,Sometimes,Yes
+36,Male,India,DevOps,26-100,Always,1,Yes,No,No,Don't know,Somewhat difficult,Often,Yes
+57,Male,Australia,Software Engineer,1-25,Never,1,No,No,No,No,Somewhat difficult,Never,No
+51,Male,Canada,Designer,26-100,Sometimes,0,Yes,Yes,Yes,Don't know,Very easy,Never,No
+35,Male,UK,Researcher,101-500,Sometimes,0,Yes,No,No,Yes,Somewhat easy,Sometimes,Yes
+52,Male,Canada,Data Scientist,1-25,Always,1,Yes,Yes,Yes,No,Somewhat easy,Rarely,Yes
+58,Female,France,Software Engineer,26-100,Sometimes,0,Yes,No,Yes,Yes,Somewhat difficult,Never,Yes
+57,Male,France,Software Engineer,1000+,Sometimes,0,Yes,No,Yes,Yes,Somewhat difficult,Rarely,No
+30,Male,USA,Researcher,500-1000,Sometimes,0,Don't know,Not sure,No,No,Very easy,Never,No
+56,Female,India,Researcher,1-25,Never,1,Yes,Not sure,Yes,Yes,Somewhat easy,Often,No
+38,Non-binary,USA,QA,101-500,Sometimes,1,Don't know,Yes,Don't know,Yes,Somewhat easy,Sometimes,Yes
+30,Male,Germany,Product Manager,500-1000,Always,1,Yes,Yes,No,Yes,Very easy,Sometimes,Yes
+25,Male,Brazil,Manager,1-25,Always,1,Don't know,Not sure,Don't know,Don't know,Somewhat difficult,Often,Yes
+46,Female,Netherlands,DevOps,101-500,Never,0,Don't know,Not sure,Don't know,Yes,Somewhat difficult,Never,No
+34,Female,Australia,Data Scientist,500-1000,Never,1,Yes,Yes,Yes,Yes,Don't know,Never,Yes
+36,Male,Australia,QA,1-25,Sometimes,0,Don't know,No,Yes,Don't know,Somewhat difficult,Never,No
+31,Male,Canada,Researcher,1-25,Sometimes,0,Yes,Not sure,Yes,No,Very difficult,Sometimes,Yes
+38,Male,Sweden,Designer,1-25,Always,0,No,Not sure,Don't know,Don't know,Don't know,Sometimes,Yes
+36,Male,Germany,Researcher,26-100,Sometimes,1,Yes,No,No,Yes,Somewhat easy,Rarely,Yes
+37,Male,India,QA,500-1000,Sometimes,0,Yes,No,Don't know,Yes,Somewhat easy,Never,Yes
+35,Male,Brazil,Researcher,26-100,Sometimes,1,Yes,Yes,No,Yes,Somewhat difficult,Often,Yes
+26,Male,Germany,DevOps,1-25,Never,1,No,Not sure,Yes,No,Very easy,Often,No
+45,Male,USA,QA,26-100,Sometimes,0,No,Yes,No,Yes,Don't know,Never,No
+36,Male,Brazil,Researcher,26-100,Always,1,Yes,Yes,Yes,Yes,Very difficult,Sometimes,Yes
+42,Female,USA,QA,500-1000,Sometimes,0,Yes,Not sure,Don't know,Yes,Don't know,Never,No
+30,Non-binary,India,Researcher,500-1000,Always,0,No,No,No,No,Very difficult,Often,Yes
+54,Male,Brazil,Manager,1-25,Sometimes,0,Yes,No,Yes,Yes,Very difficult,Sometimes,No
+44,Male,India,QA,26-100,Never,0,Don't know,No,Don't know,Yes,Very difficult,Sometimes,Yes
+51,Female,Brazil,Product Manager,500-1000,Never,1,Don't know,Yes,No,Yes,Very difficult,Never,No
+37,Male,India,Manager,500-1000,Always,0,Yes,Yes,No,No,Very difficult,Rarely,No
+51,Male,Netherlands,Data Scientist,1-25,Sometimes,0,Don't know,No,Don't know,Don't know,Don't know,Sometimes,Yes
+50,Male,Germany,Product Manager,101-500,Always,1,Yes,Yes,No,Yes,Somewhat easy,Rarely,No
+52,Female,UK,Software Engineer,1-25,Always,0,Yes,No,Don't know,Yes,Very difficult,Sometimes,Yes
+46,Non-binary,India,Software Engineer,26-100,Always,0,Don't know,No,Don't know,Yes,Somewhat easy,Often,Yes
+36,Male,Germany,Designer,26-100,Sometimes,0,Yes,No,Don't know,No,Don't know,Sometimes,Yes
+34,Male,India,QA,101-500,Never,0,No,Not sure,No,Don't know,Somewhat easy,Often,No
+25,Female,France,Software Engineer,500-1000,Always,0,No,Yes,Don't know,Don't know,Somewhat difficult,Never,No
+25,Male,UK,QA,101-500,Sometimes,0,Don't know,Not sure,Don't know,Yes,Very difficult,Often,Yes
+40,Female,Canada,Manager,1000+,Sometimes,0,Yes,Not sure,No,Don't know,Somewhat difficult,Sometimes,Yes
+24,Male,Australia,Product Manager,1-25,Sometimes,0,Yes,Yes,Yes,Yes,Somewhat difficult,Often,Yes
+31,Female,Sweden,Software Engineer,1000+,Sometimes,0,Yes,Yes,No,Yes,Somewhat difficult,Often,Yes
+34,Female,UK,Researcher,101-500,Sometimes,0,Yes,Yes,Don't know,No,Don't know,Never,Yes
+51,Male,Brazil,Software Engineer,1000+,Always,0,Yes,Yes,No,Yes,Somewhat difficult,Sometimes,No
+48,Female,USA,Product Manager,26-100,Always,0,Yes,Not sure,Don't know,Yes,Don't know,Rarely,No
+30,Female,France,DevOps,500-1000,Always,0,Yes,Yes,No,No,Somewhat easy,Often,No
+38,Female,Netherlands,Product Manager,500-1000,Sometimes,0,Yes,Yes,Yes,Don't know,Somewhat difficult,Sometimes,Yes
+52,Male,India,Designer,1-25,Sometimes,0,Yes,Yes,Yes,Yes,Don't know,Often,Yes
+34,Male,Canada,Manager,101-500,Always,0,Don't know,Yes,No,Yes,Somewhat difficult,Never,No
+37,Female,Australia,Designer,500-1000,Never,0,Yes,No,Yes,Yes,Somewhat difficult,Rarely,Yes
+56,Male,USA,Software Engineer,1000+,Always,0,No,Yes,Don't know,Yes,Very difficult,Sometimes,Yes
+29,Male,Canada,Product Manager,101-500,Sometimes,1,Yes,Yes,No,Don't know,Very difficult,Never,No
+35,Male,UK,Designer,101-500,Never,0,Yes,Not sure,No,Don't know,Very difficult,Never,No
+58,Male,Germany,Software Engineer,101-500,Always,0,No,Yes,Yes,Yes,Very difficult,Sometimes,No
+53,Male,Canada,Data Scientist,500-1000,Sometimes,1,Yes,No,No,Don't know,Somewhat easy,Never,Yes
+44,Female,Netherlands,Researcher,1-25,Always,1,No,Yes,Yes,Don't know,Somewhat difficult,Often,Yes
+40,Female,Brazil,Manager,1-25,Always,1,No,No,Yes,No,Somewhat easy,Rarely,No
+49,Male,France,QA,1000+,Always,0,Yes,No,Yes,Don't know,Somewhat difficult,Sometimes,Yes
+35,Male,France,Researcher,1000+,Sometimes,1,Don't know,No,Yes,Yes,Somewhat easy,Sometimes,No
+47,Non-binary,Canada,Software Engineer,1-25,Always,0,Yes,Yes,No,Don't know,Somewhat difficult,Sometimes,Yes
+50,Male,UK,Researcher,500-1000,Sometimes,0,Don't know,Not sure,No,No,Somewhat easy,Rarely,No
+21,Male,Brazil,Product Manager,101-500,Sometimes,0,Yes,Yes,Yes,No,Somewhat difficult,Sometimes,Yes
+47,Male,Sweden,Manager,1000+,Sometimes,0,Yes,Yes,No,Yes,Very difficult,Sometimes,No
+44,Male,Germany,Researcher,1000+,Sometimes,0,Yes,Yes,Don't know,Yes,Very easy,Sometimes,Yes
+45,Male,Netherlands,Manager,26-100,Always,0,No,No,No,Don't know,Somewhat easy,Rarely,No
+38,Male,Netherlands,QA,1-25,Sometimes,0,Yes,Yes,Yes,No,Somewhat easy,Rarely,No
+22,Female,India,QA,26-100,Sometimes,0,Yes,No,Don't know,No,Somewhat difficult,Sometimes,Yes
+44,Female,USA,QA,500-1000,Sometimes,0,No,No,Yes,Yes,Very easy,Often,No
+44,Female,Australia,DevOps,1-25,Sometimes,0,No,Not sure,No,Yes,Don't know,Rarely,No
+34,Female,France,Researcher,1000+,Always,0,Don't know,No,Don't know,Don't know,Somewhat easy,Sometimes,No
+45,Male,Brazil,Designer,1-25,Always,0,Yes,Not sure,No,Yes,Somewhat difficult,Sometimes,Yes
+49,Male,Sweden,Software Engineer,101-500,Always,0,Don't know,No,No,No,Somewhat easy,Never,Yes
+53,Female,Netherlands,DevOps,500-1000,Sometimes,0,Don't know,Not sure,Yes,Don't know,Somewhat easy,Rarely,No
+42,Male,Netherlands,Manager,1-25,Never,1,Yes,Yes,No,Yes,Somewhat difficult,Often,Yes
+39,Male,Germany,Software Engineer,101-500,Never,1,Yes,Yes,Yes,Yes,Don't know,Sometimes,Yes
+26,Male,Germany,Software Engineer,101-500,Never,0,No,Not sure,No,Yes,Somewhat easy,Sometimes,No
+25,Female,India,Software Engineer,1-25,Always,0,Yes,No,Yes,Yes,Very easy,Sometimes,No
+21,Male,USA,Manager,101-500,Sometimes,0,No,Yes,No,Don't know,Somewhat difficult,Never,No
+22,Male,UK,Researcher,101-500,Always,0,Don't know,Yes,No,Yes,Very difficult,Never,Yes

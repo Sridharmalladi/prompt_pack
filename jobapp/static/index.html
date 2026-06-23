@@ -1,0 +1,855 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>JobMatcher — RAG Resume Screening</title>
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --bg:           #07070f;
+  --surface:      rgba(255,255,255,0.04);
+  --surface-2:    rgba(255,255,255,0.07);
+  --border:       rgba(255,255,255,0.09);
+  --border-hi:    rgba(124,58,237,0.45);
+  --purple:       #7c3aed;
+  --purple-lt:    #a78bfa;
+  --cyan:         #06b6d4;
+  --pink:         #ec4899;
+  --green:        #10b981;
+  --red:          #ef4444;
+  --amber:        #f59e0b;
+  --text:         #f1f5f9;
+  --muted:        #94a3b8;
+  --dim:          #475569;
+  --r:            16px;
+  --r-sm:         10px;
+  --r-lg:         24px;
+}
+
+html, body { height: 100%; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: var(--bg); color: var(--text); overflow-x: hidden; }
+
+::-webkit-scrollbar { width: 5px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: 99px; }
+
+.bg { position: fixed; inset: 0; z-index: 0; overflow: hidden; pointer-events: none; }
+.blob { position: absolute; border-radius: 50%; filter: blur(120px); opacity: 0.15; animation: blobf 22s ease-in-out infinite; }
+.b1 { width:700px;height:700px;background:var(--purple);top:-250px;left:-150px;animation-delay:0s; }
+.b2 { width:550px;height:550px;background:var(--cyan);bottom:-200px;right:-100px;animation-delay:-8s; }
+.b3 { width:450px;height:450px;background:var(--pink);top:45%;left:45%;animation-delay:-16s; }
+@keyframes blobf {
+  0%,100% { transform: translate(0,0) scale(1); }
+  33%      { transform: translate(50px,-40px) scale(1.06); }
+  66%      { transform: translate(-40px,30px) scale(0.94); }
+}
+
+.dot-grid {
+  position: fixed; inset: 0; z-index: 0; pointer-events: none;
+  background-image: radial-gradient(rgba(255,255,255,0.04) 1px, transparent 1px);
+  background-size: 32px 32px;
+}
+
+.scene {
+  position: relative; z-index: 1; min-height: 100vh;
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  padding: 60px 20px;
+  opacity: 1; transition: opacity 0.25s ease;
+}
+.scene.out { opacity: 0; pointer-events: none; }
+.hidden { display: none !important; }
+
+.gt {
+  background: linear-gradient(135deg, var(--purple-lt), var(--cyan), var(--pink));
+  background-size: 300% 300%;
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: gshift 6s ease infinite;
+}
+@keyframes gshift {
+  0%   { background-position: 0% 50%; }
+  50%  { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.btn {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 13px 28px; border-radius: 12px; border: none;
+  font-size: 15px; font-weight: 600; cursor: pointer;
+  font-family: inherit; transition: all 0.2s; white-space: nowrap;
+  text-decoration: none;
+}
+.btn-primary {
+  background: linear-gradient(135deg, var(--purple), #4c1d95);
+  color: #fff; box-shadow: 0 0 28px rgba(124,58,237,0.45);
+}
+.btn-primary:hover { transform: translateY(-2px); box-shadow: 0 0 48px rgba(124,58,237,0.65); }
+.btn-primary:active { transform: translateY(0); }
+.btn-ghost {
+  background: var(--surface); color: var(--muted);
+  border: 1px solid var(--border);
+}
+.btn-ghost:hover { background: var(--surface-2); color: var(--text); border-color: var(--border-hi); }
+.btn-sm { padding: 8px 16px; font-size: 13px; border-radius: 8px; }
+
+.card {
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: var(--r); padding: 24px;
+  transition: border-color 0.2s;
+}
+.card:hover { border-color: var(--border-hi); }
+.card-label {
+  font-size: 11px; font-weight: 700; text-transform: uppercase;
+  letter-spacing: 1.2px; color: var(--muted); margin-bottom: 14px;
+}
+
+textarea, input[type="text"] {
+  width: 100%; background: rgba(0,0,0,0.35); border: 1px solid var(--border);
+  border-radius: var(--r-sm); color: var(--text); font-family: inherit;
+  font-size: 14px; padding: 12px; resize: none; outline: none;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+textarea:focus, input[type="text"]:focus {
+  border-color: var(--purple); box-shadow: 0 0 0 3px rgba(124,58,237,0.18);
+}
+textarea::placeholder, input::placeholder { color: var(--dim); }
+
+/* ════════ HERO ════════ */
+#hero { gap: 0; text-align: center; padding: 80px 20px; }
+
+.badge {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 6px 18px; border-radius: 99px; font-size: 12px; font-weight: 600;
+  color: var(--muted); background: var(--surface); border: 1px solid var(--border);
+  text-transform: uppercase; letter-spacing: 1px;
+  animation: fadeUp 0.6s ease both; margin-bottom: 32px;
+}
+.badge .live { width:7px;height:7px;border-radius:50%;background:var(--green);animation:pulse-green 2s ease infinite; }
+@keyframes pulse-green { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:.5;transform:scale(.75)} }
+
+.hero-title { font-size: clamp(58px,9vw,104px); font-weight: 800; letter-spacing: -4px; line-height: .92; animation: fadeUp 0.6s ease 0.1s both; margin-bottom: 24px; }
+.hero-sub { font-size: clamp(14px,1.7vw,17px); color: var(--muted); max-width: 520px; line-height: 1.75; animation: fadeUp 0.6s ease 0.2s both; margin-bottom: 36px; }
+.hero-cta { animation: fadeUp 0.6s ease 0.3s both; margin-bottom: 48px; }
+
+/* RAG steps strip */
+.rag-strip {
+  display: flex; align-items: flex-start; justify-content: center; gap: 0;
+  animation: fadeUp 0.6s ease 0.4s both; margin-bottom: 40px;
+  max-width: 720px; width: 100%;
+}
+.rag-step {
+  display: flex; flex-direction: column; align-items: center; gap: 8px;
+  flex: 1; padding: 0 6px;
+}
+.rag-icon {
+  width: 52px; height: 52px; border-radius: 14px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 22px; border: 1px solid var(--border);
+  background: var(--surface); position: relative;
+  transition: all 0.25s;
+}
+.rag-step:hover .rag-icon { border-color: var(--border-hi); background: var(--surface-2); transform: translateY(-3px); }
+.rag-step-num {
+  position: absolute; top: -7px; right: -7px;
+  width: 18px; height: 18px; border-radius: 50%;
+  background: var(--purple); color: #fff;
+  font-size: 10px; font-weight: 800; display: flex; align-items: center; justify-content: center;
+}
+.rag-label { font-size: 11px; font-weight: 700; color: var(--text); letter-spacing: 0.3px; }
+.rag-desc  { font-size: 10px; color: var(--dim); text-align: center; line-height: 1.5; max-width: 90px; }
+.rag-arrow {
+  color: var(--dim); font-size: 16px; flex-shrink: 0;
+  margin-top: 14px; padding: 0 2px;
+}
+
+.hero-chips { display:flex;gap:10px;flex-wrap:wrap;justify-content:center;animation:fadeUp .6s ease .5s both; }
+.chip {
+  display:flex;align-items:center;gap:6px;padding:7px 14px;
+  border-radius:99px;border:1px solid var(--border);background:var(--surface);
+  font-size:12px;color:var(--muted);
+}
+.chip-dot { width:6px;height:6px;border-radius:50%; }
+
+@keyframes fadeUp { from{opacity:0;transform:translateY(22px)} to{opacity:1;transform:translateY(0)} }
+
+/* ════════ UPLOAD ════════ */
+#upload { max-width: 960px; width: 100%; padding: 80px 20px; align-items: stretch; }
+
+.upload-header { text-align:center; margin-bottom:36px; }
+.upload-header h2 { font-size:34px;font-weight:700;letter-spacing:-1px;margin-bottom:8px; }
+.upload-header p { color:var(--muted);font-size:15px;line-height:1.6; }
+
+.upload-grid { display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-bottom:18px; }
+@media(max-width:680px){ .upload-grid{grid-template-columns:1fr} }
+
+.drop-zone {
+  border: 2px dashed var(--border); border-radius: var(--r-sm);
+  padding: 28px 20px; text-align: center; cursor: pointer;
+  transition: all 0.25s;
+}
+.drop-zone:hover, .drop-zone.over {
+  border-color: var(--purple); border-style: solid;
+  background: rgba(124,58,237,0.07); box-shadow: inset 0 0 40px rgba(124,58,237,0.05);
+}
+.drop-icon { font-size:36px;display:block;margin-bottom:10px;transition:transform .2s; }
+.drop-zone:hover .drop-icon { transform:translateY(-5px); }
+.drop-text { font-size:13px;color:var(--muted);line-height:1.7; }
+.drop-text strong { color:var(--purple-lt); }
+#file-input { display:none; }
+
+.file-list { display:flex;flex-direction:column;gap:6px;margin-top:10px; }
+.file-pill {
+  display:flex;align-items:center;gap:8px;padding:7px 12px;
+  background:rgba(124,58,237,0.1);border:1px solid rgba(124,58,237,0.2);
+  border-radius:8px;font-size:12px;color:var(--purple-lt);
+}
+.file-pill .rm {
+  margin-left:auto;background:none;border:none;color:var(--dim);
+  font-size:17px;cursor:pointer;padding:0;line-height:1;transition:color .15s;
+}
+.file-pill .rm:hover { color:var(--red); }
+.file-sz { color:var(--dim);font-size:11px; }
+
+.settings-row { display:grid;grid-template-columns:1fr auto;gap:14px;align-items:end;margin-bottom:24px; }
+.field { display:flex;flex-direction:column;gap:6px; }
+.field label { font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:1.2px;color:var(--muted); }
+
+.counter {
+  display:flex;align-items:center;gap:12px;background:var(--surface);
+  border:1px solid var(--border);border-radius:var(--r-sm);padding:9px 16px;
+}
+.c-btn {
+  background:none;border:none;color:var(--muted);font-size:20px;
+  cursor:pointer;padding:0;width:22px;text-align:center;transition:color .15s;line-height:1;
+}
+.c-btn:hover { color:var(--purple-lt); }
+#topk-val { font-size:17px;font-weight:700;min-width:22px;text-align:center; }
+
+/* hint box under upload form */
+.hint-box {
+  background: rgba(124,58,237,0.06); border: 1px solid rgba(124,58,237,0.18);
+  border-radius: var(--r-sm); padding: 14px 18px; margin-bottom: 24px;
+  font-size: 12px; color: var(--dim); line-height: 1.7;
+  display: flex; gap: 10px; align-items: flex-start;
+}
+.hint-box span { flex-shrink: 0; font-size: 15px; }
+
+.submit-row { display:flex;justify-content:center;gap:12px; }
+
+/* ════════ PROCESSING ════════ */
+#processing { gap: 0; }
+
+#processing::before {
+  content:''; position:absolute; inset:0;
+  background-image:
+    linear-gradient(rgba(124,58,237,0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(124,58,237,0.04) 1px, transparent 1px);
+  background-size: 44px 44px;
+  animation: grid-scroll 18s linear infinite;
+  pointer-events:none;
+}
+@keyframes grid-scroll {
+  from { transform: translate(0,0); }
+  to   { transform: translate(44px, 44px); }
+}
+
+.proc-card {
+  background: rgba(7,7,15,0.88); backdrop-filter: blur(24px);
+  border: 1px solid var(--border); border-radius: 28px;
+  padding: 52px 48px; width:100%; max-width:700px; text-align:center;
+  box-shadow: 0 32px 80px rgba(0,0,0,0.6);
+  position:relative; z-index:1;
+}
+@media(max-width:540px){ .proc-card{padding:36px 20px} }
+
+.proc-title { font-size:26px;font-weight:700;margin-bottom:6px; }
+.proc-subtitle { font-size:12px;color:var(--dim);margin-bottom:8px;text-transform:uppercase;letter-spacing:1px; }
+.proc-msg { color:var(--muted);font-size:14px;min-height:22px;margin-bottom:32px;transition:all .3s; }
+
+.pbar { height:5px;background:rgba(255,255,255,0.07);border-radius:99px;margin-bottom:40px;overflow:hidden; }
+.pfill {
+  height:100%;border-radius:99px;width:0%;
+  background:linear-gradient(90deg,var(--purple),var(--cyan));
+  transition:width .5s cubic-bezier(.4,0,.2,1);
+  position:relative;
+}
+.pfill::after {
+  content:''; position:absolute; right:0;top:0;bottom:0;width:80px;
+  background:linear-gradient(90deg,transparent,rgba(255,255,255,0.35));
+  border-radius:99px;
+  animation: shim 1.4s ease infinite;
+}
+@keyframes shim { 0%,100%{opacity:0} 50%{opacity:1} }
+
+/* Pipeline with descriptions */
+.pipeline { display:flex;align-items:flex-start;justify-content:center; }
+
+.pstep { display:flex;flex-direction:column;align-items:center;gap:8px; min-width: 90px; }
+.pconn { width:40px;height:2px;background:rgba(255,255,255,0.07);position:relative;overflow:hidden;margin-top:26px;flex-shrink:0; }
+.pconn-fill { height:100%;width:0%;background:linear-gradient(90deg,var(--purple),var(--cyan));transition:width .5s ease; }
+
+.pnode {
+  width:52px;height:52px;border-radius:50%;
+  border:2px solid var(--border); background:rgba(0,0,0,0.4);
+  display:flex;align-items:center;justify-content:center;
+  font-size:20px;transition:all .4s;position:relative;
+}
+.pnode.active {
+  border-color:var(--purple);background:rgba(124,58,237,0.18);
+  box-shadow:0 0 28px rgba(124,58,237,0.5);
+  animation:node-glow 1.6s ease infinite;
+}
+.pnode.done {
+  border-color:var(--green);background:rgba(16,185,129,0.15);
+  box-shadow:0 0 18px rgba(16,185,129,0.35);
+}
+.pnode.active::before {
+  content:''; position:absolute; inset:-8px; border-radius:50%;
+  border:2px solid rgba(124,58,237,0.4);
+  animation: ring-expand 1.6s ease infinite;
+}
+@keyframes ring-expand { 0%{opacity:1;transform:scale(1)} 100%{opacity:0;transform:scale(1.5)} }
+@keyframes node-glow { 0%,100%{box-shadow:0 0 28px rgba(124,58,237,0.5)} 50%{box-shadow:0 0 44px rgba(124,58,237,.8)} }
+
+.plabel { font-size:11px;font-weight:700;color:var(--dim);letter-spacing:.5px;transition:color .3s; }
+.pdesc  { font-size:10px;color:var(--dim);line-height:1.45;max-width:82px;text-align:center;transition:color .3s;opacity:0.7; }
+.pstep.active .plabel { color:var(--purple-lt); }
+.pstep.active .pdesc  { color:var(--purple-lt); opacity:0.8; }
+.pstep.done   .plabel { color:var(--green); }
+.pstep.done   .pdesc  { color:var(--green); opacity:0.7; }
+
+/* ════════ RESULTS ════════ */
+#results { max-width:940px;width:100%;padding:70px 20px;align-items:stretch; }
+
+.results-hdr { display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:10px;gap:16px;flex-wrap:wrap; }
+.results-hdr h2 { font-size:30px;font-weight:700;letter-spacing:-1px; }
+.results-hdr p  { color:var(--muted);font-size:13px;margin-top:4px; }
+.hdr-btns { display:flex;gap:8px;align-items:center;flex-shrink:0; }
+
+/* score legend */
+.score-legend {
+  display: flex; gap: 16px; flex-wrap: wrap; margin-bottom: 22px;
+  padding: 12px 16px;
+  background: var(--surface); border: 1px solid var(--border); border-radius: var(--r-sm);
+  font-size: 11px; color: var(--dim);
+}
+.legend-item { display: flex; align-items: center; gap: 6px; }
+.legend-dot  { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+
+.session-pill {
+  display:flex;align-items:center;gap:8px;padding:10px 16px;
+  background:rgba(16,185,129,0.08);border:1px solid rgba(16,185,129,0.22);
+  border-radius:var(--r-sm);font-size:13px;color:#6ee7b7;margin-bottom:22px;
+}
+
+.rlist { display:flex;flex-direction:column;gap:14px; }
+
+.rcard {
+  background:var(--surface);border:1px solid var(--border);border-radius:var(--r);
+  padding:22px;
+  opacity:0;transform:translateY(18px);
+  animation:card-in .4s ease forwards;
+  transition:border-color .2s;
+}
+.rcard:hover { border-color:var(--border-hi); }
+.rcard:nth-child(1){animation-delay:.04s}
+.rcard:nth-child(2){animation-delay:.09s}
+.rcard:nth-child(3){animation-delay:.14s}
+.rcard:nth-child(4){animation-delay:.19s}
+.rcard:nth-child(5){animation-delay:.24s}
+.rcard:nth-child(6){animation-delay:.29s}
+.rcard:nth-child(7){animation-delay:.34s}
+.rcard:nth-child(8){animation-delay:.39s}
+.rcard:nth-child(9){animation-delay:.44s}
+.rcard:nth-child(10){animation-delay:.49s}
+@keyframes card-in { to{opacity:1;transform:translateY(0)} }
+
+.rcard-top { display:flex;align-items:center;gap:14px;margin-bottom:16px; }
+.rank-badge {
+  width:42px;height:42px;border-radius:11px;
+  display:flex;align-items:center;justify-content:center;
+  font-size:15px;font-weight:800;flex-shrink:0;
+}
+.rk1 { background:linear-gradient(135deg,#fbbf24,#d97706);color:#000; }
+.rk2 { background:linear-gradient(135deg,#cbd5e1,#94a3b8);color:#000; }
+.rk3 { background:linear-gradient(135deg,#cd7c4d,#92400e);color:#fff; }
+.rkn { background:var(--surface);border:1px solid var(--border);color:var(--muted); }
+
+.rcard-info { flex:1;min-width:0; }
+.rcard-name { font-size:15px;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis; }
+.rcard-sub  { font-size:11px;color:var(--muted);margin-top:2px; }
+
+.score-pct { font-size:26px;font-weight:800;flex-shrink:0; }
+
+.sbar-hdr { display:flex;justify-content:space-between;margin-bottom:6px; }
+.sbar-label { font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:1px;color:var(--dim); }
+.sbar-val   { font-size:12px;font-weight:700;color:var(--cyan); }
+.sbar-track { height:5px;background:rgba(255,255,255,0.07);border-radius:99px;overflow:hidden; }
+.sbar-fill  {
+  height:100%;border-radius:99px;width:0%;
+  background:linear-gradient(90deg,var(--purple),var(--cyan));
+  transition:width 1s cubic-bezier(.25,.46,.45,.94);
+}
+
+.sum-toggle {
+  display:flex;align-items:center;gap:6px;margin-top:14px;
+  color:var(--dim);font-size:13px;cursor:pointer;
+  background:none;border:none;padding:0;font-family:inherit;transition:color .15s;
+}
+.sum-toggle:hover { color:var(--purple-lt); }
+.sum-arrow { font-size:10px;transition:transform .2s; }
+.sum-toggle.open .sum-arrow { transform:rotate(180deg); }
+
+.sum-body {
+  display:none;margin-top:12px;padding:14px 16px;
+  background:rgba(0,0,0,0.3);border-radius:var(--r-sm);
+  border-left: 3px solid var(--purple);
+  font-size:13px;line-height:1.75;color:var(--muted);
+  animation: fadein .2s ease;
+}
+.sum-body.open { display:block; }
+.sum-credit {
+  font-size: 10px; color: var(--dim); margin-top: 8px;
+  display: flex; align-items: center; gap: 5px;
+}
+@keyframes fadein { from{opacity:0} to{opacity:1} }
+
+#toasts {
+  position:fixed;bottom:24px;right:24px;z-index:9999;
+  display:flex;flex-direction:column;gap:8px;
+}
+.toast {
+  padding:13px 18px;border-radius:12px;font-size:13px;font-weight:500;
+  box-shadow:0 8px 32px rgba(0,0,0,0.5);max-width:300px;
+  animation:toast-in .3s ease;
+}
+.t-ok  { background:rgba(16,185,129,0.12);border:1px solid rgba(16,185,129,0.28);color:#6ee7b7; }
+.t-err { background:rgba(239,68,68,0.12); border:1px solid rgba(239,68,68,0.28); color:#fca5a5; }
+@keyframes toast-in { from{opacity:0;transform:translateX(20px)} to{opacity:1;transform:translateX(0)} }
+</style>
+</head>
+<body>
+
+<div class="bg">
+  <div class="blob b1"></div>
+  <div class="blob b2"></div>
+  <div class="blob b3"></div>
+</div>
+<div class="dot-grid"></div>
+
+<!-- ══════════════════════════════════
+     HERO
+══════════════════════════════════ -->
+<section id="hero" class="scene">
+  <div class="badge"><span class="live"></span> RAG Pipeline · 4 Steps · Live Streaming</div>
+
+  <h1 class="hero-title">
+    <span class="gt">Job</span><br/>Matcher
+  </h1>
+
+  <p class="hero-sub">
+    A <strong style="color:var(--text)">Retrieval-Augmented Generation</strong> system that ranks every candidate by semantic similarity to your job description, then uses a <strong style="color:var(--purple-lt)">large language model</strong> to explain each match.
+  </p>
+
+  <div class="hero-cta">
+    <button class="btn btn-primary" onclick="goTo('upload')" style="font-size:17px;padding:15px 36px;">
+      🚀 &nbsp;Start Matching
+    </button>
+  </div>
+
+  <!-- RAG pipeline steps strip -->
+  <div class="rag-strip">
+    <div class="rag-step">
+      <div class="rag-icon">
+        📄
+        <div class="rag-step-num">1</div>
+      </div>
+      <div class="rag-label">Extract</div>
+      <div class="rag-desc">Parse PDF & DOCX into clean text</div>
+    </div>
+    <div class="rag-arrow">→</div>
+    <div class="rag-step">
+      <div class="rag-icon">
+        🧠
+        <div class="rag-step-num">2</div>
+      </div>
+      <div class="rag-label">Embed</div>
+      <div class="rag-desc">384-dim vectors via sentence-transformers</div>
+    </div>
+    <div class="rag-arrow">→</div>
+    <div class="rag-step">
+      <div class="rag-icon">
+        📊
+        <div class="rag-step-num">3</div>
+      </div>
+      <div class="rag-label">Rank</div>
+      <div class="rag-desc">Cosine similarity scores every resume</div>
+    </div>
+    <div class="rag-arrow">→</div>
+    <div class="rag-step">
+      <div class="rag-icon">
+        ✨
+        <div class="rag-step-num">4</div>
+      </div>
+      <div class="rag-label">Summarize</div>
+      <div class="rag-desc">LLM explains fit in 3 sentences</div>
+    </div>
+  </div>
+
+  <div class="hero-chips">
+    <div class="chip"><span class="chip-dot" style="background:var(--purple)"></span> Local embeddings — no API cost</div>
+    <div class="chip"><span class="chip-dot" style="background:var(--cyan)"></span> AI-powered summaries</div>
+    <div class="chip"><span class="chip-dot" style="background:var(--pink)"></span> Cosine similarity ranking</div>
+    <div class="chip"><span class="chip-dot" style="background:var(--green)"></span> Session persistence</div>
+    <div class="chip"><span class="chip-dot" style="background:var(--amber)"></span> SSE live streaming</div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════
+     UPLOAD
+══════════════════════════════════ -->
+<section id="upload" class="scene hidden">
+  <div class="upload-header">
+    <h2>Configure Your <span class="gt">Search</span></h2>
+    <p>Paste the job description and upload candidate resumes.<br/>The more detailed the job description, the more precise the semantic matching.</p>
+  </div>
+
+  <div class="upload-grid">
+    <div class="card">
+      <div class="card-label">📋 Job Description — used to build the query embedding</div>
+      <textarea id="job-desc" rows="13"
+        placeholder="Paste the full job description here…&#10;&#10;Tip: include required skills, responsibilities, years of experience, and qualifications. The system embeds this text and compares it against every resume vector to compute similarity scores."></textarea>
+    </div>
+
+    <div class="card">
+      <div class="card-label">📎 Resume Files — PDF or DOCX, up to 10 MB each</div>
+      <div class="drop-zone" id="drop-zone"
+        onclick="document.getElementById('file-input').click()"
+        ondragover="dOver(event)" ondragleave="dLeave()" ondrop="dDrop(event)">
+        <span class="drop-icon">☁️</span>
+        <div class="drop-text">
+          <strong>Click to upload</strong> or drag &amp; drop<br/>
+          PDF · DOCX · DOC &nbsp;·&nbsp; up to 10 MB each
+        </div>
+      </div>
+      <input type="file" id="file-input" multiple accept=".pdf,.docx,.doc" onchange="addFiles(this.files)" />
+      <div class="file-list" id="file-list"></div>
+    </div>
+  </div>
+
+  <div class="hint-box">
+    <span>💡</span>
+    <div>
+      <strong style="color:var(--muted)">How scoring works:</strong> Each resume is converted to a 384-dimensional vector using a local sentence-transformers model. Cosine similarity between the job-description vector and each resume vector produces a score from 0 → 1. Only the top-K candidates by score proceed to the AI summarization step.
+    </div>
+  </div>
+
+  <div class="settings-row">
+    <div class="field">
+      <label>Session Name <span style="font-weight:400;text-transform:none;letter-spacing:0">(optional — saves results for later review)</span></label>
+      <input type="text" id="session-name" placeholder="e.g. Senior Engineer — Q3 2026" />
+    </div>
+    <div class="field">
+      <label>Top-K Candidates</label>
+      <div class="counter">
+        <button class="c-btn" onclick="dK(-1)">−</button>
+        <span id="topk-val">5</span>
+        <button class="c-btn" onclick="dK(1)">+</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="submit-row">
+    <button class="btn btn-ghost" onclick="goTo('hero')">← Back</button>
+    <button class="btn btn-primary" onclick="startMatch()">🎯 &nbsp;Run Pipeline</button>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════
+     PROCESSING
+══════════════════════════════════ -->
+<section id="processing" class="scene hidden">
+  <div class="proc-card">
+    <div class="proc-subtitle">RAG Pipeline Running</div>
+    <div class="proc-title">Analyzing Candidates <span class="gt">✨</span></div>
+    <div class="proc-msg" id="proc-msg">Initializing pipeline…</div>
+
+    <div class="pbar"><div class="pfill" id="pfill"></div></div>
+
+    <div class="pipeline">
+      <div class="pstep" id="ps-extract">
+        <div class="pnode" id="pn-extract">📄</div>
+        <div class="plabel">Extract</div>
+        <div class="pdesc">Parse PDF & DOCX text</div>
+      </div>
+      <div class="pconn"><div class="pconn-fill" id="pc-1"></div></div>
+      <div class="pstep" id="ps-embed">
+        <div class="pnode" id="pn-embed">🧠</div>
+        <div class="plabel">Embed</div>
+        <div class="pdesc">Local 384-dim vectors</div>
+      </div>
+      <div class="pconn"><div class="pconn-fill" id="pc-2"></div></div>
+      <div class="pstep" id="ps-rank">
+        <div class="pnode" id="pn-rank">📊</div>
+        <div class="plabel">Rank</div>
+        <div class="pdesc">Cosine similarity sort</div>
+      </div>
+      <div class="pconn"><div class="pconn-fill" id="pc-3"></div></div>
+      <div class="pstep" id="ps-summarize">
+        <div class="pnode" id="pn-summarize">✨</div>
+        <div class="plabel">Summarize</div>
+        <div class="pdesc">AI fit analysis</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════
+     RESULTS
+══════════════════════════════════ -->
+<section id="results" class="scene hidden">
+  <div class="results-hdr">
+    <div>
+      <h2>Top <span class="gt" id="rc">0</span> Candidates</h2>
+      <p>Ranked by semantic similarity · AI-generated fit summaries</p>
+    </div>
+    <div class="hdr-btns">
+      <button class="btn btn-ghost btn-sm" onclick="goTo('upload')">🔍 New Search</button>
+      <button class="btn btn-ghost btn-sm" onclick="goTo('hero')">🏠 Home</button>
+    </div>
+  </div>
+
+  <div class="score-legend">
+    <span style="font-weight:600;color:var(--muted);margin-right:4px;">Score guide:</span>
+    <div class="legend-item"><div class="legend-dot" style="background:var(--green)"></div> ≥ 70% Strong match</div>
+    <div class="legend-item"><div class="legend-dot" style="background:var(--cyan)"></div> 50–69% Good candidate</div>
+    <div class="legend-item"><div class="legend-dot" style="background:var(--purple-lt)"></div> 35–49% Partial match</div>
+    <div class="legend-item"><div class="legend-dot" style="background:var(--red)"></div> &lt; 35% Weak overlap</div>
+  </div>
+
+  <div class="session-pill hidden" id="sess-pill">💾 <span id="sess-msg"></span></div>
+  <div class="rlist" id="rlist"></div>
+</section>
+
+<div id="toasts"></div>
+
+<script>
+let files = [];
+let topK = 5;
+let evtSrc = null;
+
+const NODE_ICON  = { extract:'📄', embed:'🧠', rank:'📊', summarize:'✨' };
+const STEP_ORDER = ['extract','embed','rank','summarize'];
+const CONN_IDS   = { extract:'pc-1', embed:'pc-2', rank:'pc-3' };
+
+function goTo(id) {
+  const cur = document.querySelector('.scene:not(.hidden)');
+  if (cur) {
+    cur.classList.add('out');
+    setTimeout(() => {
+      cur.classList.add('hidden');
+      cur.classList.remove('out');
+      _show(id);
+    }, 220);
+  } else {
+    _show(id);
+  }
+  window.scrollTo(0,0);
+}
+function _show(id) {
+  const el = document.getElementById(id);
+  el.classList.remove('hidden');
+  el.style.opacity='0';
+  requestAnimationFrame(()=>{ el.style.transition='opacity .25s ease'; el.style.opacity='1'; });
+}
+
+function dOver(e) { e.preventDefault(); document.getElementById('drop-zone').classList.add('over'); }
+function dLeave()  { document.getElementById('drop-zone').classList.remove('over'); }
+function dDrop(e)  { e.preventDefault(); dLeave(); addFiles(e.dataTransfer.files); }
+
+function addFiles(fl) {
+  const ok = ['.pdf','.docx','.doc'];
+  for (const f of fl) {
+    const ext = f.name.slice(f.name.lastIndexOf('.')).toLowerCase();
+    if (!ok.includes(ext)) { toast(`Skipped ${f.name} — unsupported format`, true); continue; }
+    if (f.size > 10*1024*1024) { toast(`Skipped ${f.name} — exceeds 10 MB`, true); continue; }
+    if (!files.find(x => x.name===f.name && x.size===f.size)) files.push(f);
+  }
+  renderFiles();
+}
+function rmFile(i) { files.splice(i,1); renderFiles(); }
+function renderFiles() {
+  const list = document.getElementById('file-list');
+  list.innerHTML = '';
+  files.forEach((f,i)=>{
+    const sz = f.size < 1e6 ? `${Math.round(f.size/1024)} KB` : `${(f.size/1e6).toFixed(1)} MB`;
+    const d = document.createElement('div');
+    d.className = 'file-pill';
+    d.innerHTML = `<span>📄</span><span>${esc(f.name)}</span><span class="file-sz">${sz}</span>
+      <button class="rm" onclick="rmFile(${i})">×</button>`;
+    list.appendChild(d);
+  });
+}
+
+function dK(d) { topK = Math.max(1,Math.min(10,topK+d)); document.getElementById('topk-val').textContent=topK; }
+
+function resetPipeline() {
+  STEP_ORDER.forEach(s=>{
+    document.getElementById(`ps-${s}`).className='pstep';
+    const n=document.getElementById(`pn-${s}`);
+    n.className='pnode'; n.textContent=NODE_ICON[s];
+  });
+  Object.values(CONN_IDS).forEach(id=>{ document.getElementById(id).style.width='0%'; });
+  setP(0,'Initializing pipeline…');
+}
+function setP(pct, msg) {
+  document.getElementById('pfill').style.width = pct+'%';
+  if (msg) document.getElementById('proc-msg').textContent = msg;
+}
+function activateStep(s) {
+  document.getElementById(`ps-${s}`).classList.add('active');
+  document.getElementById(`pn-${s}`).classList.add('active');
+}
+function completeStep(s) {
+  const ps=document.getElementById(`ps-${s}`), pn=document.getElementById(`pn-${s}`);
+  ps.classList.remove('active'); ps.classList.add('done');
+  pn.classList.remove('active'); pn.classList.add('done'); pn.textContent='✓';
+  const cid=CONN_IDS[s];
+  if (cid) document.getElementById(cid).style.width='100%';
+}
+
+async function startMatch() {
+  const jd = document.getElementById('job-desc').value.trim();
+  if (!jd)           { toast('Please enter a job description.', true); return; }
+  if (!files.length) { toast('Please upload at least one resume.', true); return; }
+
+  goTo('processing');
+  resetPipeline();
+  activateStep('extract');
+
+  const fd = new FormData();
+  fd.append('job_description', jd);
+  fd.append('session_name', document.getElementById('session-name').value.trim());
+  fd.append('top_k', topK);
+  files.forEach(f => fd.append('files', f));
+
+  let res;
+  try { res = await fetch('/api/match', { method:'POST', body:fd }); }
+  catch(e) { goTo('upload'); toast('Network error — please try again.', true); return; }
+
+  if (!res.ok) {
+    const err = await res.json().catch(()=>({detail:'Server error'}));
+    goTo('upload'); toast(err.detail||'Server error', true); return;
+  }
+
+  const { job_id } = await res.json();
+  if (evtSrc) evtSrc.close();
+  evtSrc = new EventSource(`/api/stream/${job_id}`);
+  evtSrc.onmessage = e => handleEvt(JSON.parse(e.data));
+  evtSrc.onerror   = () => { evtSrc.close(); goTo('upload'); toast('Connection lost.', true); };
+}
+
+function handleEvt(ev) {
+  if (ev.type === 'ping') return;
+
+  if (ev.type === 'step') {
+    setP(ev.progress, ev.message);
+    activateStep(ev.step);
+    if (ev.done) completeStep(ev.step);
+  }
+
+  if (ev.type === 'complete') {
+    setP(100, 'Pipeline complete!');
+    STEP_ORDER.forEach(s => completeStep(s));
+    evtSrc.close();
+    setTimeout(() => showResults(ev.results), 700);
+  }
+
+  if (ev.type === 'error') {
+    evtSrc.close();
+    goTo('upload');
+    toast(ev.message || 'An error occurred.', true);
+  }
+}
+
+function showResults(results) {
+  const grid = document.getElementById('rlist');
+  grid.innerHTML = '';
+  document.getElementById('rc').textContent = results.length;
+
+  const sname = document.getElementById('session-name').value.trim();
+  const pill = document.getElementById('sess-pill');
+  if (sname) {
+    pill.classList.remove('hidden');
+    document.getElementById('sess-msg').textContent = `Session "${sname}" saved.`;
+  } else {
+    pill.classList.add('hidden');
+  }
+
+  results.forEach((r, i) => {
+    const pct = Math.round(r.similarity * 100);
+    const rkClass = ['rk1','rk2','rk3'][i] || 'rkn';
+
+    let pctColor = 'var(--red)';
+    if (r.similarity >= 0.7)       pctColor = 'var(--green)';
+    else if (r.similarity >= 0.5)  pctColor = 'var(--cyan)';
+    else if (r.similarity >= 0.35) pctColor = 'var(--purple-lt)';
+
+    const card = document.createElement('div');
+    card.className = 'rcard';
+    card.innerHTML = `
+      <div class="rcard-top">
+        <div class="rank-badge ${rkClass}">#${i+1}</div>
+        <div class="rcard-info">
+          <div class="rcard-name">${esc(r.filename)}</div>
+          <div class="rcard-sub">Cosine similarity rank · all-MiniLM-L6-v2 embeddings</div>
+        </div>
+        <div class="score-pct" style="color:${pctColor}">${pct}%</div>
+      </div>
+      <div class="sbar-hdr">
+        <span class="sbar-label">Semantic Match Score</span>
+        <span class="sbar-val">${r.similarity.toFixed(4)}</span>
+      </div>
+      <div class="sbar-track"><div class="sbar-fill" data-w="${r.similarity*100}"></div></div>
+      <button class="sum-toggle" onclick="toggleSum(this)">
+        <span>✨ AI Fit Analysis</span><span class="sum-arrow">▼</span>
+      </button>
+      <div class="sum-body">
+        ${esc(r.summary)}
+        <div class="sum-credit">⚡ AI-generated summary</div>
+      </div>
+    `;
+    grid.appendChild(card);
+  });
+
+  goTo('results');
+
+  setTimeout(() => {
+    document.querySelectorAll('.sbar-fill').forEach(el => {
+      el.style.width = el.dataset.w + '%';
+    });
+  }, 300);
+}
+
+function toggleSum(btn) {
+  btn.classList.toggle('open');
+  btn.nextElementSibling.classList.toggle('open');
+}
+
+function esc(s) {
+  return String(s)
+    .replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')
+    .replace(/"/g,'&quot;').replace(/\n/g,'<br>');
+}
+
+function toast(msg, isErr=false) {
+  const el = document.createElement('div');
+  el.className = `toast ${isErr?'t-err':'t-ok'}`;
+  el.textContent = msg;
+  document.getElementById('toasts').appendChild(el);
+  setTimeout(() => el.remove(), 4200);
+}
+</script>
+</body>
+</html>
